@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/ryfylke-react-as/static/css/main.b6c22e3a.chunk.css",
+    "main.js": "/ryfylke-react-as/static/js/main.788e1ef0.chunk.js",
+    "main.js.map": "/ryfylke-react-as/static/js/main.788e1ef0.chunk.js.map",
+    "runtime-main.js": "/ryfylke-react-as/static/js/runtime-main.3052ae41.js",
+    "runtime-main.js.map": "/ryfylke-react-as/static/js/runtime-main.3052ae41.js.map",
+    "static/js/2.80e92a69.chunk.js": "/ryfylke-react-as/static/js/2.80e92a69.chunk.js",
+    "static/js/2.80e92a69.chunk.js.map": "/ryfylke-react-as/static/js/2.80e92a69.chunk.js.map",
+    "static/js/3.27b4c273.chunk.js": "/ryfylke-react-as/static/js/3.27b4c273.chunk.js",
+    "static/js/3.27b4c273.chunk.js.map": "/ryfylke-react-as/static/js/3.27b4c273.chunk.js.map",
+    "index.html": "/ryfylke-react-as/index.html",
+    "static/css/main.b6c22e3a.chunk.css.map": "/ryfylke-react-as/static/css/main.b6c22e3a.chunk.css.map",
+    "static/js/2.80e92a69.chunk.js.LICENSE.txt": "/ryfylke-react-as/static/js/2.80e92a69.chunk.js.LICENSE.txt",
+    "static/media/MOUNTAINS.edc31a5c.svg": "/ryfylke-react-as/static/media/MOUNTAINS.edc31a5c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3052ae41.js",
+    "static/js/2.80e92a69.chunk.js",
+    "static/css/main.b6c22e3a.chunk.css",
+    "static/js/main.788e1ef0.chunk.js"
+  ]
+}
