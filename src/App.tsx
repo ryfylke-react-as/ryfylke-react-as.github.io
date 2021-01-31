@@ -48,7 +48,7 @@ function App() {
           <h2>Frontend konsulent-tjenester</h2>
           <p>Utvikling av nettsider og web-apps.</p>
           <button onClick={() => setPage("contact")}>Kontakt</button>
-          <button onClick={() => setPage("portfolio")}>Leveranser</button>
+          <button onClick={() => setPage("portfolio")}>Konsulenter</button>
         </div>
         <div className={contactCN}>
           <h2>KONTAKT</h2>
@@ -70,8 +70,12 @@ function App() {
           </footer>
         </div>
         <div className={portfolioCN}>
-          <h2>LEVERANSER</h2>
-          <p>...</p>
+          <h2>KONSULENTER</h2>
+          <ul>
+            <li>
+              <a href="https://haakon.dev">Håkon Svennes Underbakke</a>
+            </li>
+          </ul>
           <button onClick={() => setPage("home")}>Tilbake</button>
         </div>
       </Container>
@@ -137,6 +141,26 @@ const Container = styled.div`
     &.portfolio h2,
     &.contact h2 {
       font-size: 4.5em;
+    }
+    &.portfolio {
+      h2 {
+        margin: 0 0 20px;
+      }
+      button {
+        margin-top: 30px;
+      }
+      ul {
+        padding-left: 20px;
+        li {
+          font-size: 1.2em;
+          a {
+            color: var(--violet);
+            &:hover {
+              text-decoration: none;
+            }
+          }
+        }
+      }
     }
     &.contact {
       display: flex;
