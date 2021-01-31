@@ -106,8 +106,12 @@ function App() {
           <img src={Icon} alt="Ikon" className="icon" />
           <h2>Frontend konsulent-tjenester.</h2>
           <p>Utvikling av nettsider og web-apps.</p>
-          <Button onClick={() => setPage("contact")}>Kontakt</Button>
-          <Button onClick={() => setPage("portfolio")}>Konsulenter</Button>
+          <Button onClick={() => setPage("contact")} i="fas fa-envelope">
+            Kontakt
+          </Button>
+          <Button onClick={() => setPage("portfolio")} i="fas fa-users">
+            Konsulenter
+          </Button>
         </div>
         <div className={contactCN}>
           <h2>KONTAKT</h2>
@@ -144,21 +148,31 @@ function App() {
             />
           </label>
           <footer>
-            <Button onClick={() => setPage("home")}>Tilbake</Button>
-            <Button onClick={onSubmit} disabled={loadingForm}>
+            <Button onClick={() => setPage("home")} i="fas fa-angle-left">
+              Tilbake
+            </Button>
+            <Button
+              onClick={onSubmit}
+              disabled={loadingForm}
+              i="fas fa-paper-plane"
+            >
               {loadingForm ? "Sender..." : "Kontakt oss"}
             </Button>
           </footer>
         </div>
         <div className={portfolioCN}>
           <h2>KONSULENTER</h2>
-          <p>Trykk på konsulenten for å lese mer.</p>
+          <p>Trykk på konsulenten for å se portfolio.</p>
           <ul>
             <li>
-              <a href="https://haakon.dev">Håkon Svennes Underbakke</a>
+              <a href="https://haakon.dev">
+                <i className="fas fa-code" /> Håkon Svennes Underbakke
+              </a>
             </li>
           </ul>
-          <Button onClick={() => setPage("home")}>Tilbake</Button>
+          <Button onClick={() => setPage("home")} i="fas fa-angle-left">
+            Tilbake
+          </Button>
         </div>
       </Container>
       <Mountain src={MountainIMG} page={page} role="presentation" />
@@ -270,11 +284,21 @@ const Container = styled.div`
         padding: 0;
         li {
           font-size: 1.2em;
+          position: relative;
           @media screen and (max-width: 800px) {
             font-size: 0.8em;
           }
           padding-bottom: 10px;
           a {
+            &:hover i {
+              opacity: 0.6;
+            }
+            i {
+              position: absolute;
+              opacity: 0;
+              transition: opacity 0.2s ease;
+              left: 10px;
+            }
             display: block;
             padding: 10px;
             background: var(--pink-l);
@@ -284,10 +308,10 @@ const Container = styled.div`
             border: 1px solid var(--pink-g);
             border-left: 0px;
             border-right: 0px;
-            transition: text-indent 0.2s ease-in-out;
+            transition: padding-left 0.2s ease-in-out;
             &:hover,
             &:focus-visible {
-              text-indent: 10px;
+              padding-left: 40px;
             }
             &::before {
               content: "";
@@ -407,9 +431,11 @@ const Container = styled.div`
 
 function Button({
   children,
+  i,
   ...rest
 }: {
   children: ReactNode;
+  i?: string;
   onClick?: (e: React.FormEvent) => void;
   disabled?: boolean;
 }) {
@@ -417,6 +443,11 @@ function Button({
   const [onMouseMove, styles] = useMouseMove(ref);
   return (
     <StyledButton ref={ref} style={styles} onMouseMove={onMouseMove} {...rest}>
+      {i && (
+        <>
+          <i className={i} />{" "}
+        </>
+      )}
       <strong>{children}</strong>
     </StyledButton>
   );
@@ -431,6 +462,9 @@ const StyledButton = styled.button`
   overflow: hidden;
   @media screen and (max-width: 800px) {
     font-size: 1.1em;
+  }
+  > i {
+    margin-right: 0.3em;
   }
   cursor: pointer;
   color: var(--violet);
