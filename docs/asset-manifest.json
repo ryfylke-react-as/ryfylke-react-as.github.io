@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/ryfylke-react-as/static/css/main.b6c22e3a.chunk.css",
-    "main.js": "/ryfylke-react-as/static/js/main.788e1ef0.chunk.js",
-    "main.js.map": "/ryfylke-react-as/static/js/main.788e1ef0.chunk.js.map",
-    "runtime-main.js": "/ryfylke-react-as/static/js/runtime-main.3052ae41.js",
-    "runtime-main.js.map": "/ryfylke-react-as/static/js/runtime-main.3052ae41.js.map",
-    "static/js/2.80e92a69.chunk.js": "/ryfylke-react-as/static/js/2.80e92a69.chunk.js",
-    "static/js/2.80e92a69.chunk.js.map": "/ryfylke-react-as/static/js/2.80e92a69.chunk.js.map",
-    "static/js/3.27b4c273.chunk.js": "/ryfylke-react-as/static/js/3.27b4c273.chunk.js",
-    "static/js/3.27b4c273.chunk.js.map": "/ryfylke-react-as/static/js/3.27b4c273.chunk.js.map",
-    "index.html": "/ryfylke-react-as/index.html",
-    "static/css/main.b6c22e3a.chunk.css.map": "/ryfylke-react-as/static/css/main.b6c22e3a.chunk.css.map",
-    "static/js/2.80e92a69.chunk.js.LICENSE.txt": "/ryfylke-react-as/static/js/2.80e92a69.chunk.js.LICENSE.txt",
-    "static/media/MOUNTAINS.edc31a5c.svg": "/ryfylke-react-as/static/media/MOUNTAINS.edc31a5c.svg"
+    "main.css": "/static/css/main.b6c22e3a.chunk.css",
+    "main.js": "/static/js/main.788e1ef0.chunk.js",
+    "main.js.map": "/static/js/main.788e1ef0.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.2973b9e4.js",
+    "runtime-main.js.map": "/static/js/runtime-main.2973b9e4.js.map",
+    "static/js/2.14c158ad.chunk.js": "/static/js/2.14c158ad.chunk.js",
+    "static/js/2.14c158ad.chunk.js.map": "/static/js/2.14c158ad.chunk.js.map",
+    "static/js/3.27b4c273.chunk.js": "/static/js/3.27b4c273.chunk.js",
+    "static/js/3.27b4c273.chunk.js.map": "/static/js/3.27b4c273.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.b6c22e3a.chunk.css.map": "/static/css/main.b6c22e3a.chunk.css.map",
+    "static/js/2.14c158ad.chunk.js.LICENSE.txt": "/static/js/2.14c158ad.chunk.js.LICENSE.txt",
+    "static/media/MOUNTAINS.edc31a5c.svg": "/static/media/MOUNTAINS.edc31a5c.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.3052ae41.js",
-    "static/js/2.80e92a69.chunk.js",
+    "static/js/runtime-main.2973b9e4.js",
+    "static/js/2.14c158ad.chunk.js",
     "static/css/main.b6c22e3a.chunk.css",
     "static/js/main.788e1ef0.chunk.js"
   ]
