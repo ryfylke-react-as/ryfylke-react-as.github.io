@@ -517,10 +517,12 @@ const Mountain = styled.img<{ page: Page }>`
       transform: translate(0px, 20px);
     }
   }
-  transform: scale(
-    ${(props) =>
-      props.page === "home" ? 1 : props.page === "contact" ? 0.5 : 1.5}
-  );
+  transform: ${(props) =>
+    props.page === "home"
+      ? "scale(1)"
+      : props.page === "contact"
+      ? "scale(0.5)"
+      : "scale(1.5) translate(20%, 0px)"};
   opacity: ${(props) =>
     props.page === "home" ? 0.6 : props.page === "contact" ? 0.4 : 1};
 `;
