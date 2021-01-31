@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import MountainIMG from "./assets/MOUNTAINS.svg";
+import Icon from "./assets/icon.svg";
 import CN from "classnames";
 
 type Page = "home" | "contact" | "portfolio";
@@ -102,7 +103,8 @@ function App() {
             REACT
             <span>AS</span>
           </h1>
-          <h2>Frontend konsulent-tjenester</h2>
+          <img src={Icon} alt="Ikon" className="icon" />
+          <h2>Frontend konsulent-tjenester.</h2>
           <p>Utvikling av nettsider og web-apps.</p>
           <button onClick={() => setPage("contact")}>Kontakt</button>
           <button onClick={() => setPage("portfolio")}>Konsulenter</button>
@@ -153,8 +155,7 @@ function App() {
           <p>Trykk på konsulenten for å lese mer.</p>
           <ul>
             <li>
-              <a href="https://haakon.dev">Håkon Svennes Underbakke</a> -
-              Frontend
+              <a href="https://haakon.dev">Håkon Svennes Underbakke</a>
             </li>
           </ul>
           <button onClick={() => setPage("home")}>Tilbake</button>
@@ -179,7 +180,7 @@ const Container = styled.div`
     grid-area: 1 / 1;
   }
   h1 {
-    font-size: 6em;
+    font-size: 5.5em;
     @media screen and (max-width: 800px) {
       font-size: 4em;
     }
@@ -192,7 +193,7 @@ const Container = styled.div`
   h2 {
     opacity: 0.6;
     @media screen and (max-width: 800px) {
-      font-size: 1.2em;
+      font-size: 1.1em;
     }
   }
   p {
@@ -244,15 +245,27 @@ const Container = styled.div`
         visibility: hidden;
       }
     }
-    &.home button {
-      margin-top: 30px;
-      @media screen and (max-width: 800px) {
-        display: block;
-        width: 100%;
-        margin: 0;
-        margin-top: 10px;
-        &:first-of-type {
-          margin-top: 25px;
+    &.home {
+      position: relative;
+      .icon {
+        position: absolute;
+        user-select: none;
+        pointer-events: none;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        opacity: 0.2;
+      }
+      button {
+        margin-top: 30px;
+        @media screen and (max-width: 800px) {
+          display: block;
+          width: 100%;
+          margin: 0;
+          margin-top: 10px;
+          &:first-of-type {
+            margin-top: 25px;
+          }
         }
       }
     }
@@ -260,7 +273,7 @@ const Container = styled.div`
     &.contact h2 {
       font-size: 4.5em;
       @media screen and (max-width: 800px) {
-        font-size: 3em;
+        font-size: 2.5em;
       }
     }
     &.portfolio {
@@ -271,13 +284,18 @@ const Container = styled.div`
         margin-top: 30px;
       }
       ul {
-        padding-left: 20px;
+        list-style: none;
+        padding: 0;
         li {
           font-size: 1.2em;
           @media screen and (max-width: 800px) {
             font-size: 0.8em;
           }
+          padding-bottom: 10px;
           a {
+            display: block;
+            padding: 10px;
+            background: var(--pink-l);
             color: var(--violet);
             &:hover {
               text-decoration: none;
@@ -405,7 +423,7 @@ const Mountain = styled.img<{ page: Page }>`
       props.page === "home" ? 1 : props.page === "contact" ? 0.5 : 1.5}
   );
   opacity: ${(props) =>
-    props.page === "home" ? 1 : props.page === "contact" ? 0.5 : 1};
+    props.page === "home" ? 0.6 : props.page === "contact" ? 0.4 : 1};
 `;
 
 const Mountain2 = styled.img<{ page: Page }>`

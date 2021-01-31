@@ -38,6 +38,12 @@ body {
   font-size: 16px;
   overflow-x: hidden;
 }
+@media screen and (max-width: 800px) {
+  body,
+  html {
+    font-size: 14px;
+  }
+}
 
 input,
 code {
