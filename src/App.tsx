@@ -209,10 +209,16 @@ const Container = styled.div`
         animation: fadeInContact 0.3s ease-in;
         animation-fill-mode: both;
         animation-delay: 0.4s;
+        visibility: visible;
         @keyframes fadeInContact {
           from {
             opacity: 0;
             transform: translate(-8%, 0px);
+          }
+          to {
+            opacity: 1;
+            transform: none;
+            visibility: visible;
           }
         }
       }
@@ -223,10 +229,16 @@ const Container = styled.div`
       animation-delay: 0.4s;
       pointer-events: all;
       position: static;
+      visibility: visible;
       @keyframes scaleUp {
         from {
           opacity: 0;
           transform: scale(0.99) translate(0px, 5%);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+          visibility: visible;
         }
       }
     }
