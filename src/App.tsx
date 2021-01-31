@@ -44,6 +44,7 @@ function App() {
             RYFYLKE
             <br />
             REACT
+            <span>AS</span>
           </h1>
           <h2>Frontend konsulent-tjenester</h2>
           <p>Utvikling av nettsider og web-apps.</p>
@@ -66,14 +67,16 @@ function App() {
           </label>
           <footer>
             <button onClick={() => setPage("home")}>Tilbake</button>
-            <button onClick={() => setPage("portfolio")}>Kontakt oss</button>
+            <button>Kontakt oss</button>
           </footer>
         </div>
         <div className={portfolioCN}>
           <h2>KONSULENTER</h2>
+          <p>Trykk på konsulenten for å lese mer.</p>
           <ul>
             <li>
-              <a href="https://haakon.dev">Håkon Svennes Underbakke</a>
+              <a href="https://haakon.dev">Håkon Svennes Underbakke</a> -
+              Frontend
             </li>
           </ul>
           <button onClick={() => setPage("home")}>Tilbake</button>
@@ -98,6 +101,10 @@ const Container = styled.div`
   h1 {
     font-size: 6em;
     margin: 0;
+    span {
+      color: var(--pink-g);
+      font-size: 0.5em;
+    }
   }
   h2 {
     opacity: 0.6;
@@ -121,7 +128,7 @@ const Container = styled.div`
     opacity: 0;
     &.canAnimate {
       opacity: 1;
-      animation: goAway 0.6s ease-in;
+      animation: goAway 0.3s ease-in;
       animation-fill-mode: both;
     }
     pointer-events: none;
@@ -129,10 +136,12 @@ const Container = styled.div`
       from {
         opacity: 1;
         transform: none;
+        visibility: visible;
       }
       to {
         opacity: 0;
         transform: translate(-20%, 0px);
+        visibility: hidden;
       }
     }
     &.home button {
@@ -186,7 +195,8 @@ const Container = styled.div`
           padding: 0.5em;
         }
         textarea {
-          max-height: 25ch;
+          min-height: 12ch;
+          max-height: 12ch;
         }
         + label {
           margin-top: 0.8em;
@@ -196,9 +206,9 @@ const Container = styled.div`
         margin-top: 30px;
       }
       &.active {
-        animation: fadeInContact 0.4s ease-in;
+        animation: fadeInContact 0.3s ease-in;
         animation-fill-mode: both;
-        animation-delay: 0.6s;
+        animation-delay: 0.4s;
         @keyframes fadeInContact {
           from {
             opacity: 0;
@@ -210,7 +220,7 @@ const Container = styled.div`
     &.active {
       animation: scaleUp 0.3s ease-in;
       animation-fill-mode: both;
-      animation-delay: 0.6s;
+      animation-delay: 0.4s;
       pointer-events: all;
       position: static;
       @keyframes scaleUp {
@@ -231,9 +241,9 @@ const Mountain = styled.img<{ page: Page }>`
   transform-origin: bottom right;
   pointer-events: none;
   user-select: none;
-  transition: transform 1.2s ease-out, opacity 0.8s ease-out;
+  transition: transform 0.8s ease-out, opacity 0.8s ease-out;
   animation: mountainIn 0.4s ease-out;
-  animation-delay: 0.6s;
+  animation-delay: 0.4s;
   animation-fill-mode: backwards;
   @keyframes mountainIn {
     from {
@@ -256,7 +266,7 @@ const Mountain2 = styled.img<{ page: Page }>`
   max-width: 70%;
   pointer-events: none;
   user-select: none;
-  transition: transform 1.2s ease-out, opacity 0.8s ease-out;
+  transition: transform 0.8s ease-out, opacity 0.8s ease-out;
   transform: translate(
     ${(props) =>
       props.page === "home"

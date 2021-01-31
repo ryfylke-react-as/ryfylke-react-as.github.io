@@ -29,8 +29,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "delete-docs": "del-cli --force ./docs",
+    "copy-build": "mv build docs || move build doc",
+    "predeploy": "npm run build && npm run delete-docs && npm run copy-build",
+    "deploy": "gh-pages -d docs"
   },
   "eslintConfig": {
     "extends": [
@@ -49,5 +51,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "del-cli": "^3.0.1"
   }
 }
