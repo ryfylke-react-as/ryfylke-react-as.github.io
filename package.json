@@ -31,7 +31,9 @@
     "eject": "react-scripts eject",
     "delete-docs": "del-cli --force ./docs",
     "copy-build": "mv build docs || move build doc",
-    "predeploy": "npm run build && npm run delete-docs && npm run copy-build",
+    "stage-build": "git add . && git commit -m 'Build'",
+    "push-build": "npm run stage-build && git push --all",
+    "predeploy": "npm run build && npm run delete-docs && npm run copy-build && npm run stage-build && npm run push-build",
     "deploy": "gh-pages -d docs"
   },
   "eslintConfig": {
