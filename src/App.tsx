@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import MountainIMG from "./assets/MOUNTAINS.svg";
 import Icon from "./assets/icon.svg";
@@ -106,8 +106,8 @@ function App() {
           <img src={Icon} alt="Ikon" className="icon" />
           <h2>Frontend konsulent-tjenester.</h2>
           <p>Utvikling av nettsider og web-apps.</p>
-          <button onClick={() => setPage("contact")}>Kontakt</button>
-          <button onClick={() => setPage("portfolio")}>Konsulenter</button>
+          <Button onClick={() => setPage("contact")}>Kontakt</Button>
+          <Button onClick={() => setPage("portfolio")}>Konsulenter</Button>
         </div>
         <div className={contactCN}>
           <h2>KONTAKT</h2>
@@ -144,10 +144,10 @@ function App() {
             />
           </label>
           <footer>
-            <button onClick={() => setPage("home")}>Tilbake</button>
-            <button onClick={onSubmit} disabled={loadingForm}>
+            <Button onClick={() => setPage("home")}>Tilbake</Button>
+            <Button onClick={onSubmit} disabled={loadingForm}>
               {loadingForm ? "Sender..." : "Kontakt oss"}
-            </button>
+            </Button>
           </footer>
         </div>
         <div className={portfolioCN}>
@@ -158,7 +158,7 @@ function App() {
               <a href="https://haakon.dev">Håkon Svennes Underbakke</a>
             </li>
           </ul>
-          <button onClick={() => setPage("home")}>Tilbake</button>
+          <Button onClick={() => setPage("home")}>Tilbake</Button>
         </div>
       </Container>
       <Mountain src={MountainIMG} page={page} role="presentation" />
@@ -199,24 +199,6 @@ const Container = styled.div`
   p {
     @media screen and (max-width: 800px) {
       font-size: 0.8em;
-    }
-  }
-  button {
-    border: none;
-    padding: 0.7em 1.3em;
-    font-weight: bold;
-    font-size: 1.3em;
-    @media screen and (max-width: 800px) {
-      font-size: 1.1em;
-    }
-    cursor: pointer;
-    color: var(--violet);
-    background: var(--pink-g);
-    font-family: "Montserrat", sans-serif;
-    text-transform: uppercase;
-    + button {
-      background: var(--pink);
-      margin-left: 0.6em;
     }
   }
   .page {
@@ -297,8 +279,34 @@ const Container = styled.div`
             padding: 10px;
             background: var(--pink-l);
             color: var(--violet);
-            &:hover {
-              text-decoration: none;
+            text-decoration: none;
+            position: relative;
+            border: 1px solid var(--pink-g);
+            border-left: 0px;
+            border-right: 0px;
+            transition: text-indent 0.2s ease-in-out;
+            &:hover,
+            &:focus-visible {
+              text-indent: 10px;
+            }
+            &::before {
+              content: "";
+              position: absolute;
+              top: -1px;
+              left: 0;
+              right: 0;
+              bottom: -1px;
+              border: 1px solid var(--violet);
+              border-left: 0px;
+              border-right: 0px;
+              opacity: 0;
+              transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+              transform: scaleX(0);
+            }
+            &:hover::before,
+            &:focus-visible::before {
+              transform: scaleX(1);
+              opacity: 1;
             }
           }
         }
@@ -397,6 +405,97 @@ const Container = styled.div`
   }
 `;
 
+function Button({
+  children,
+  ...rest
+}: {
+  children: ReactNode;
+  onClick?: (e: React.FormEvent) => void;
+  disabled?: boolean;
+}) {
+  const ref = useRef(null);
+  const [onMouseMove, styles] = useMouseMove(ref);
+  return (
+    <StyledButton ref={ref} style={styles} onMouseMove={onMouseMove} {...rest}>
+      <strong>{children}</strong>
+    </StyledButton>
+  );
+}
+
+const StyledButton = styled.button`
+  position: relative;
+  border: none;
+  padding: 0.7em 1.3em;
+  font-weight: bold;
+  font-size: 1.3em;
+  overflow: hidden;
+  @media screen and (max-width: 800px) {
+    font-size: 1.1em;
+  }
+  cursor: pointer;
+  color: var(--violet);
+  background: var(--pink-g);
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  &:focus {
+    outline: none;
+  }
+  strong {
+    position: relative;
+    z-index: 3;
+  }
+  + button {
+    background: var(--pink);
+    margin-left: 0.6em;
+  }
+  transition: opacity 0.2s ease-in-out;
+  &:active > strong {
+    top: 1px;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid var(--violet);
+    border-left: 0px;
+    border-right: 0px;
+    opacity: 0;
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    transform: scaleX(0);
+  }
+  &:hover::before,
+  &:focus-visible::before {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  &::after {
+    opacity: 0;
+  }
+  &:hover::after,
+  &:focus-visible::after {
+    opacity: 1;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    background: radial-gradient(
+      rgb(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0) 70%
+    ); /* White glow */
+    width: 7em;
+    height: 7em;
+    border-radius: 50%;
+
+    top: calc(var(--y) * 1px); /* Use coordinates to do fancy styles */
+    left: calc(var(--x) * 1px);
+
+    transform: translate(-50%, -50%); /* Center circle around cursor */
+  }
+`;
+
 const Mountain = styled.img<{ page: Page }>`
   position: absolute;
   bottom: 0;
@@ -448,5 +547,40 @@ const Mountain2 = styled.img<{ page: Page }>`
   opacity: ${(props) =>
     props.page === "home" ? 0 : props.page === "contact" ? 1 : 0};
 `;
+
+const getTotalOffset = (el: HTMLElement) => {
+  let a: any = el,
+    x = 0,
+    y = 0;
+  while (a) {
+    x += a.offsetLeft;
+    y += a.offsetTop;
+    a = a.offsetParent;
+  }
+  return { offsetX: x, offsetY: y };
+};
+
+function useMouseMove(
+  reference: React.RefObject<HTMLElement>
+): [(e: React.MouseEvent) => void, React.CSSProperties] {
+  const [mousePointer, setMousePointer] = useState({ x: 0, y: 0 });
+  const mouseMove = (event: React.MouseEvent) => {
+    if (reference?.current) {
+      const { pageX, pageY } = event;
+      const { offsetX, offsetY } = getTotalOffset(reference.current);
+      const x = pageX - offsetX;
+      const y = pageY - offsetY;
+      setMousePointer({
+        x,
+        y,
+      });
+    }
+  };
+  const styles = {
+    "--x": mousePointer.x,
+    "--y": mousePointer.y,
+  } as React.CSSProperties;
+  return [mouseMove, styles];
+}
 
 export default App;
