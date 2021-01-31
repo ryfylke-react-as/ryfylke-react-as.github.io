@@ -173,7 +173,7 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: 1;
   grid-template-columns: 1;
-  max-width: 85vw;
+  max-width: 82vw;
   margin: 0 auto;
   > * {
     grid-area: 1 / 1;
@@ -220,6 +220,12 @@ const Container = styled.div`
   }
   .page {
     opacity: 0;
+    max-height: 100vh;
+    overflow-y: auto;
+    @media screen and (max-width: 800px) {
+      padding-top: 20px !important;
+      padding-bottom: 20px !important;
+    }
     &.canAnimate {
       opacity: 1;
       animation: goAway 0.3s ease-in;
@@ -293,7 +299,7 @@ const Container = styled.div`
         font-size: 0.8em;
       }
       @media screen and (max-width: 550px) {
-        width: 85vw;
+        width: 100%;
         padding: 0 5vmin;
       }
       h2 {
