@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import {
   Button,
   Form,
+  InlineLoading,
+  Loading,
   Modal,
   TextArea,
   TextInput,
@@ -16,10 +18,13 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+  const [contactFailed, setContactFailed] = useState(false);
+  const [formLoading, setFormLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [formErrors, setFormErrors] = useState({
     reply_to: false,
     message: false,
+    name: false,
   });
   const [formState, setFormState] = useState({
     name: "",
@@ -31,6 +36,7 @@ function App() {
     onChange: (e: any) =>
       setFormState({ ...formState, [key]: e?.target?.value }),
     id: key,
+    invalid: formErrors[key],
   });
 
   return (
@@ -71,6 +77,11 @@ function App() {
             open={modalOpen}
             onRequestClose={() => setModalOpen(false)}
             onRequestSubmit={() => {
+              setFormErrors({ name: false, reply_to: false, message: false });
+              if (contactFailed) {
+                document.location.href = `mailto:hakon@ryfylke.dev?body=${formState.message}`;
+                return;
+              }
               let newFormErrors: {
                 [key: string]: boolean;
               } = { reply_to: false, message: false };
@@ -80,12 +91,12 @@ function App() {
               if (!formState.message) {
                 newFormErrors.message = true;
               }
-              console.log(newFormErrors);
               if (
                 Object.keys(newFormErrors).every(
                   (key) => (newFormErrors[key] as boolean) === false
                 )
               ) {
+                setFormLoading(true);
                 axios
                   .post(
                     "https://ewxpkphj05.execute-api.us-east-1.amazonaws.com/dev/static-site-mailer",
@@ -101,21 +112,31 @@ function App() {
                       autoClose: 2000,
                     });
                     toast(
-                      "Send gjerne en e-post direkte til hakon@ryfylke.dev",
+                      "Trykk igjen for å sende mail fra din e-post klient",
                       {
                         type: "info",
                         autoClose: 7000,
                       }
                     );
+                    setContactFailed(true);
+                    const submitButton: HTMLButtonElement | null =
+                      document.querySelector(
+                        ".bx--modal-footer button.bx--btn--primary"
+                      );
+                    if (submitButton) {
+                      submitButton.focus();
+                    }
                     console.error(err);
-                    setModalOpen(false);
+                  })
+                  .finally(() => {
+                    setFormLoading(false);
                   });
               } else {
                 setFormErrors(newFormErrors as typeof formErrors);
               }
             }}
             modalHeading="Kontakt oss"
-            primaryButtonText="Send melding"
+            primaryButtonText={contactFailed ? "Send e-post" : "Send melding"}
             secondaryButtonText="Avbryt"
             hasForm
           >
@@ -125,8 +146,14 @@ function App() {
                 {...createFormProps("reply_to")}
                 type="email"
                 labelText="E-post addresse"
+                invalidText="Obligatorisk felt"
               />
-              <TextArea {...createFormProps("message")} labelText="Melding" />
+              <TextArea
+                {...createFormProps("message")}
+                labelText="Melding"
+                invalidText="Obligatorisk felt"
+              />
+              {formLoading && <Loading active />}
             </Form>
           </Modal>
         </nav>
