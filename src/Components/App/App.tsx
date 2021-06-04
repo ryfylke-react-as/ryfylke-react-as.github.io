@@ -12,6 +12,8 @@ import { Expertice } from "../Expertice/Expertice";
 import "./App.scss";
 import { Tooltip } from "carbon-components-react/lib/components/Tooltip/Tooltip";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -33,6 +35,7 @@ function App() {
 
   return (
     <div className="App">
+      <ToastContainer position="top-center" />
       <header>
         <h1>
           Ryfylke React AS <p>Frontend konsulent-firma</p>
@@ -90,8 +93,20 @@ function App() {
                   )
                   .then(() => {
                     setModalOpen(false);
+                    toast("Meldingen ble levert!", { type: "success" });
                   })
                   .catch((err) => {
+                    toast("Klarte ikke å sende melding...", {
+                      type: "error",
+                      autoClose: 2000,
+                    });
+                    toast(
+                      "Send gjerne en e-post direkte til hakon@ryfylke.dev",
+                      {
+                        type: "info",
+                        autoClose: 7000,
+                      }
+                    );
                     console.error(err);
                     setModalOpen(false);
                   });
