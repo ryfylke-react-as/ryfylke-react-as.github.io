@@ -1,0 +1,42 @@
+.Expertice {
+  p {
+    max-width: 700px;
+    margin-bottom: 0.5rem;
+  }
+  > p {
+    margin-bottom: 1rem;
+  }
+  .tileGroup {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    .bx--tile {
+      display: flex;
+      gap: 1rem;
+      flex: 1;
+      max-width: 700px;
+      min-width: 400px;
+      &:hover > svg {
+        transform: rotate(360deg);
+      }
+      > svg {
+        transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        --size: 6rem;
+        width: var(--size);
+        height: var(--size);
+        flex-grow: 0;
+        flex-shrink: 0;
+        padding: 1rem;
+        background: #edf5ff;
+        border-radius: 50%;
+      }
+      > div {
+        display: flex;
+        flex-direction: column;
+        p {
+          font-size: 0.875rem;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+.SubHeader {
+  padding: 2rem;
+  position: relative;
+  height: 15rem;
+  background: #393939;
+  color: #ffffff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  margin: -2rem -10rem 2rem;
+  @media screen and (max-width: 1000px) {
+    padding-left: 2rem;
+    margin: -2rem -10rem 2rem -4rem;
+  }
+  .picto {
+    --size: 20rem;
+    width: var(--size);
+    height: var(--size);
+    fill: #8d8d8d;
+    opacity: 0.1;
+    position: absolute;
+    top: -2rem;
+    transition: transform 0.05s ease-out;
+    transform: translateY(calc(var(--scrollTop) * -0.25px));
+    @media screen and (max-width: 1000px) {
+      left: -10rem;
+    }
+  }
+  h2 {
+    padding: 0 8rem;
+    @media screen and (max-width: 1000px) {
+      padding-left: 2rem;
+    }
+    position: relative;
+    z-index: 2;
+    font-size: 4rem;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.005);
+    > svg {
+      animation: ArrowAnim 1.5s linear infinite;
+    }
+  }
+}
+
+@keyframes ArrowAnim {
+  0% {
+    transform: translateX(-25%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  40% {
+    transform: translateX(0%);
+    opacity: 0.5;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  90% {
+    transform: translateX(25%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(25%);
+    opacity: 0;
+  }
+}
