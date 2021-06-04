@@ -5,6 +5,7 @@ import {
   InlineLoading,
   Loading,
   Modal,
+  OverflowMenuItem,
   TextArea,
   TextInput,
 } from "carbon-components-react";
@@ -16,6 +17,7 @@ import { Tooltip } from "carbon-components-react/lib/components/Tooltip/Tooltip"
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { OverflowMenu } from "carbon-components-react/lib/components/OverflowMenu/OverflowMenu";
 
 function App() {
   const [contactFailed, setContactFailed] = useState(false);
@@ -47,6 +49,12 @@ function App() {
           Ryfylke React AS <p>Frontend konsulent-firma</p>
         </h1>
         <nav>
+          <OverflowMenu className="of-menu" flipped>
+            <OverflowMenuItem
+              itemText="Kontakt oss"
+              onClick={() => setModalOpen(true)}
+            />
+          </OverflowMenu>
           <Tooltip
             showIcon={false}
             align="end"
@@ -75,6 +83,7 @@ function App() {
           </Button>
           <Modal
             open={modalOpen}
+            size="sm"
             onRequestClose={() => setModalOpen(false)}
             onRequestSubmit={() => {
               setFormErrors({ name: false, reply_to: false, message: false });

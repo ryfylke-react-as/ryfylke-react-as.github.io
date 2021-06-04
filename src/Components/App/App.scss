@@ -5,6 +5,7 @@ body {
   letter-spacing: 0;
   padding: 0;
   color: #161616;
+  background: #393939;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   p {
@@ -13,6 +14,11 @@ body {
   }
   .bx--form-item {
     margin-bottom: 1rem;
+  }
+  .bx--modal-container {
+    max-width: 90vw;
+    max-height: 70vh;
+    overflow-y: auto;
   }
 }
 
@@ -35,8 +41,19 @@ body {
       display: flex;
       gap: 1rem;
     }
+    .of-menu {
+      display: none;
+    }
     @media screen and (max-width: 740px) {
       .bx--tooltip__label {
+        display: none;
+      }
+    }
+    @media screen and (max-width: 400px) {
+      .of-menu {
+        display: block;
+      }
+      .bx--btn {
         display: none;
       }
     }
@@ -56,6 +73,10 @@ body {
 
     @media screen and (max-width: 1000px) {
       padding-left: 4rem;
+    }
+    @media screen and (max-width: 600px) {
+      padding-right: 2rem;
+      padding-left: 2rem;
     }
   }
 }

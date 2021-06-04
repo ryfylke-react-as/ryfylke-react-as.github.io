@@ -32,7 +32,7 @@ export const SubHeader = () => {
         style={{ "--scrollTop": scrollTop } as CSSProperties}
       />
       <h2>
-        Ditt produkt <ArrowRight32 /> <strong>neste nivå</strong>.
+        Ditt produkt <ArrowRight32 /> <strong>neste nivå.</strong>
       </h2>
     </div>
   );

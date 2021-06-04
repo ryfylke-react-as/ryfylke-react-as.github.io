@@ -1,14 +1,10 @@
-import { Email32 } from "@carbon/icons-react";
 import {
-  ArtTools_01,
   Build,
   Idea,
-  QuestionAndAnswer,
   UserExperienceDesign,
   WebDeveloper,
 } from "@carbon/pictograms-react";
-import { Button, Tab, Tabs, Tile } from "carbon-components-react";
-import React from "react";
+import { Button, Tile } from "carbon-components-react";
 import "./Expertice.scss";
 
 type Props = {};

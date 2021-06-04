@@ -10,12 +10,23 @@
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+    }
     .bx--tile {
       display: flex;
       gap: 1rem;
       flex: 1;
       max-width: 700px;
       min-width: 400px;
+      @media screen and (max-width: 600px) {
+        min-width: 0;
+        max-width: 100%;
+        flex-direction: column;
+        h3 {
+          margin-bottom: 0.5rem;
+        }
+      }
       &:hover > svg {
         transform: rotate(360deg);
       }
@@ -29,6 +40,7 @@
         padding: 1rem;
         background: #edf5ff;
         border-radius: 50%;
+        align-self: center;
       }
       > div {
         display: flex;
