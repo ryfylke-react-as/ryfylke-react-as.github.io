@@ -40,7 +40,10 @@
         padding: 1rem;
         background: #edf5ff;
         border-radius: 50%;
-        align-self: center;
+        align-self: flex-start;
+        @media screen and (max-width: 600px) {
+          align-self: center;
+        }
       }
       > div {
         display: flex;
