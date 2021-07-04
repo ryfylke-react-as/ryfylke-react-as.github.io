@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import { LandingPage } from "../LandingPage/LandingPage";
 import { PlayPage } from "../Play/Play";
 import "./App.scss";
@@ -6,7 +6,7 @@ import "./App.scss";
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <HashRouter>
         <Switch>
           <Route path="/play/:path">
             <PlayPage />
@@ -15,7 +15,7 @@ function App() {
             <LandingPage />
           </Route>
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
