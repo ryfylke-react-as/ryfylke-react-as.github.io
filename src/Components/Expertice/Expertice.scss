@@ -4,18 +4,18 @@
     margin-bottom: 0.5rem;
   }
   > p {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
   .tileGroup {
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
     flex-wrap: wrap;
     @media screen and (max-width: 600px) {
       flex-direction: column;
     }
     .bx--tile {
       display: flex;
-      gap: 1rem;
+      gap: 2rem;
       flex: 1;
       max-width: 700px;
       min-width: 400px;
