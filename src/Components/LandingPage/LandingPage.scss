@@ -1,10 +1,16 @@
 .LandingPage {
-  background: #f4f4f4;
   min-height: 100vh;
-  max-width: 1500px;
+  max-width: 1700px;
+  border-left: 10px solid #222;
+  background: #262727;
   margin: 0 auto;
+  .bx--btn--primary {
+    background: #711dfa;
+    &:hover {
+      background: #8135fd;
+    }
+  }
   > header {
-    background: #fff;
     padding: 1rem 2rem;
     padding-left: 10rem;
     @media screen and (max-width: 1000px) {
@@ -39,20 +45,27 @@
       display: flex;
       flex-direction: column;
       p {
-        color: #424242;
         font-size: 0.85rem;
       }
     }
   }
-  main {
+  main,
+  footer {
     padding: 2rem 10rem;
-
+  }
+  main {
     @media screen and (max-width: 1000px) {
       padding-left: 4rem;
     }
     @media screen and (max-width: 600px) {
       padding-right: 2rem;
       padding-left: 2rem;
+    }
+  }
+  footer {
+    background: #222223;
+    p {
+      margin-bottom: 1rem;
     }
   }
 }

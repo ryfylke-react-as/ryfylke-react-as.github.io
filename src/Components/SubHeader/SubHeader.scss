@@ -1,9 +1,8 @@
 .SubHeader {
   padding: 2rem;
   position: relative;
-  height: 15rem;
+  height: 20rem;
   background: #393939;
-  color: #ffffff;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -22,7 +21,7 @@
     fill: #8d8d8d;
     opacity: 0.1;
     position: absolute;
-    top: -2rem;
+    top: 0rem;
     transition: transform 0.05s ease-out;
     transform: translateY(calc(var(--scrollTop) * -0.25px));
     @media screen and (max-width: 1000px) {

@@ -5,6 +5,7 @@
   "homepage": "http://ryfylke-react-as.github.io",
   "dependencies": {
     "@carbon/pictograms-react": "^11.11.0",
+    "@carbon/themes": "^10.37.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",

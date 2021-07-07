@@ -171,7 +171,17 @@ export function LandingPage() {
         <SubHeader />
         <Expertice />
       </main>
-      <footer></footer>
+      <footer>
+        <p>La oss ta en prat om hva vi kan gjøre for deg og din bedrift.</p>
+        <div className="flex">
+          <Button kind="primary" onClick={() => setModalOpen(true)}>
+            Send oss en melding
+          </Button>
+          <p>
+            (<a href="tel:98494271">+47 984 94 271</a>)
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

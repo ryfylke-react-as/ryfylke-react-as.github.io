@@ -17,7 +17,7 @@ export const Expertice = ({}: Props) => {
         produkt opp til neste nivå.
       </p>
       <div className="tileGroup">
-        <Tile light>
+        <Tile>
           <UserExperienceDesign />
           <div>
             <h3>Tilgjengelighet</h3>
@@ -30,7 +30,7 @@ export const Expertice = ({}: Props) => {
             </p>
           </div>
         </Tile>
-        <Tile light>
+        <Tile>
           <Build />
           <div>
             <h3>Design</h3>
@@ -41,7 +41,7 @@ export const Expertice = ({}: Props) => {
             </p>
           </div>
         </Tile>
-        <Tile light>
+        <Tile>
           <Idea />
           <div>
             <h3>Kompetanse</h3>
@@ -53,7 +53,7 @@ export const Expertice = ({}: Props) => {
             </p>
           </div>
         </Tile>
-        <Tile light>
+        <Tile>
           <WebDeveloper />
           <div>
             <h3>Erfaring</h3>
