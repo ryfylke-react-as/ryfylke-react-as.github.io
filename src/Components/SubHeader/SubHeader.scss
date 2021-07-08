@@ -27,6 +27,13 @@
     @media screen and (max-width: 1000px) {
       left: -10rem;
     }
+    animation: fadeInLeft 1s ease-in-out;
+    @keyframes fadeInLeft {
+      from {
+        transform: translateX(-20%);
+        opacity: 0;
+      }
+    }
   }
   h2 {
     padding: 0 8rem;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Button,
   Form,
@@ -17,9 +17,13 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { OverflowMenu } from "carbon-components-react/lib/components/OverflowMenu/OverflowMenu";
+import { useMouseMove } from "../../hooks/useMouseMove";
 import "./LandingPage.scss";
+import styled from "styled-components";
 
 export function LandingPage() {
+  const contactButtonRef = useRef<HTMLButtonElement>(null);
+  const [onMouseMove, styles] = useMouseMove(contactButtonRef);
   const [contactFailed, setContactFailed] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -174,9 +178,15 @@ export function LandingPage() {
       <footer>
         <p>La oss ta en prat om hva vi kan gjøre for deg og din bedrift.</p>
         <div className="flex">
-          <Button kind="primary" onClick={() => setModalOpen(true)}>
+          <ContactButton
+            kind="primary"
+            onClick={() => setModalOpen(true)}
+            style={styles}
+            ref={contactButtonRef}
+            onMouseMove={onMouseMove}
+          >
             Send oss en melding
-          </Button>
+          </ContactButton>
           <p>
             (<a href="tel:98494271">+47 984 94 271</a>)
           </p>
@@ -185,5 +195,27 @@ export function LandingPage() {
     </div>
   );
 }
+
+const ContactButton = styled(Button)`
+  position: relative;
+  overflow: hidden;
+  &::after {
+    display: block;
+    content: "";
+    position: absolute;
+    top: calc(var(--y) * 1px);
+    left: calc(var(--x) * 1px);
+    transform: translate(-50%, -50%);
+    width: 2rem;
+    height: 2rem;
+    box-shadow: 0px 0px 20px #fff;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 50%;
+  }
+  &:hover::after {
+    opacity: 0.2;
+  }
+`;
 
 export default LandingPage;

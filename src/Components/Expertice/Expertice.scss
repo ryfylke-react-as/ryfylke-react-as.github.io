@@ -24,6 +24,28 @@
       flex: 1;
       max-width: 700px;
       min-width: 400px;
+      animation: fadeInUp 0.3s ease-in-out;
+      animation-fill-mode: both;
+      @keyframes fadeInUp {
+        from {
+          transform: translateY(10px);
+          opacity: 0.5;
+        }
+        to {
+          transform: translateY(0px);
+          opacity: 1;
+        }
+      }
+      animation-delay: 0s;
+      &:nth-of-type(2) {
+        animation-delay: 0.05s;
+      }
+      &:nth-of-type(3) {
+        animation-delay: 0.1s;
+      }
+      &:nth-of-type(4) {
+        animation-delay: 0.15s;
+      }
       @media screen and (max-width: 600px) {
         min-width: 0;
         max-width: 100%;
@@ -34,16 +56,18 @@
       }
       &:hover > svg {
         transform: rotate(360deg);
+        fill: #e0ceff;
+        opacity: 0.8;
       }
       > svg {
-        transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
         --size: 6rem;
         width: var(--size);
         height: var(--size);
         flex-grow: 0;
         flex-shrink: 0;
         padding: 1rem;
-        background: #711cf9;
+        background: var(--primary-muted);
         border-radius: 50%;
         align-self: flex-start;
         @media screen and (max-width: 600px) {
