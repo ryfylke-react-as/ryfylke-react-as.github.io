@@ -6,7 +6,6 @@ export const StyledCode = styled.div`
   border-radius: 10px;
   box-shadow: 0px 0px 16px -8px #0f1e21;
   filter: hue-rotate(250deg);
-  opacity: 0.8;
 
   @-moz-document url-prefix() {
     background: #282528;
