@@ -80,6 +80,7 @@ export const GlobalStyles = createGlobalStyle`
     font-size:2rem;
     color:var(--text-01);
     align-items:center;
+    flex-wrap:wrap;
     span {
       color:var(--text-02);
       opacity:0.6;
