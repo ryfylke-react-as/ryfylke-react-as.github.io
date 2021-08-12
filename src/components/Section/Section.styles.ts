@@ -27,6 +27,8 @@ export const StyledSection = styled.section<SectionProps>`
   padding-bottom: 10rem;
   background: ${generateBackground};
   margin-bottom: var(--spacing-07);
+  min-height: 60vh;
+  max-height: 1000px;
   &:not(:first-of-type) {
     margin-top: -12rem;
     position: relative;
