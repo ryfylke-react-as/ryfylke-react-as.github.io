@@ -48,7 +48,7 @@ export const GlobalStyles = createGlobalStyle`
   }
   body {
     font-family: 'Ubuntu', sans-serif;
-    background:var(--background);
+    background:linear-gradient(to bottom, var(--background), 90%, var(--ui-03));
     color: var(--text-01);
     font-size: 16px;
     box-sizing:border-box;

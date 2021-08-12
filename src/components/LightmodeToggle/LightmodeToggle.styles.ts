@@ -5,6 +5,10 @@ export const Container = styled.div`
   top: var(--spacing-07);
   left: var(--spacing-05);
   z-index: 99;
+  transition: transform 0.2s ease-in-out;
+  @media screen and (max-width: 500px) {
+    transform: translateY(calc(var(--spacing-05) * -1));
+  }
   label {
     display: flex;
     border-radius: 25px;
