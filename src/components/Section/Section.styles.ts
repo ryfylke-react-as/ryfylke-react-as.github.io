@@ -29,6 +29,10 @@ export const StyledSection = styled.section<SectionProps>`
   margin-bottom: var(--spacing-07);
   height: 60vh;
   max-height: 450px;
+  @media screen and (max-width: 850px) {
+    max-height: 2000px;
+    height: auto;
+  }
   &:not(:first-of-type) {
     margin-top: -12rem;
     position: relative;
