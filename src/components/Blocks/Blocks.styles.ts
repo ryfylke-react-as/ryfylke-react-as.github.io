@@ -119,6 +119,8 @@ export const Container = styled.div`
     }
   }
   .laptop {
+    --laptopColor: #fff;
+    --secondary: #aaa;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -126,7 +128,7 @@ export const Container = styled.div`
     width: 200px;
     height: 120px;
     margin: 56px 0 0 0;
-    border: 5px #fff solid;
+    border: 5px var(--laptopColor) solid;
     border-radius: 2px;
   }
 
@@ -138,9 +140,10 @@ export const Container = styled.div`
     height: 3px;
     margin: 126px 0 0 80px;
     background: var(--background);
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
     z-index: 1;
+    background: var(--secondary);
   }
 
   .laptop:after {
@@ -150,7 +153,7 @@ export const Container = styled.div`
     width: 240px;
     height: 8px;
     margin: 6px 0 0 -20px;
-    background: #fff;
+    background: var(--laptopColor);
     border-radius: 2px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;

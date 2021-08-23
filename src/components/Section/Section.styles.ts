@@ -27,7 +27,6 @@ export const StyledSection = styled.section<SectionProps>`
   padding-bottom: 10rem;
   background: ${generateBackground};
   margin-bottom: var(--spacing-07);
-  height: 60vh;
   max-height: 450px;
   @media screen and (max-width: 850px) {
     max-height: 2000px;
