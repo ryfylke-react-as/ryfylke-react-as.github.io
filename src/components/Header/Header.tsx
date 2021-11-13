@@ -20,7 +20,9 @@ export const Header = ({ isLightmode }: Props) => {
             isLightmode ? "blått" : "oransje"
           } vikingskip, hvor tuppen ser ut som et drage-hode.`}
         />
-        <h1>Ryfylke React</h1>
+        <h1>
+          Ryfylke <span>React</span>
+        </h1>
       </LogoContainer>
       <Waves />
     </StyledHeader>

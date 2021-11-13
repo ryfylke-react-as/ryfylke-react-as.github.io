@@ -46,6 +46,12 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding:0;
   }
+  @media (prefers-reduced-motion) { 
+    * {
+      transition:none !important;
+      animation: none !important;
+    }
+  }
   body {
     font-family: 'Ubuntu', sans-serif;
     background:linear-gradient(to bottom, var(--background), 90%, var(--ui-03));

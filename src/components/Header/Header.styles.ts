@@ -1,18 +1,25 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const titleAnim = keyframes`
+  from {
+    opacity:0;
+    transform:rotate(6deg);
+  }
+`;
 
 export const StyledHeader = styled.header`
   display: flex;
   gap: var(--spacing-07);
   flex-direction: column;
   align-items: center;
-  padding-top: var(--spacing-09);
+  padding: var(--spacing-09) var(--spacing-08) 0;
   position: relative;
   min-height: 50vh;
   svg {
     position: relative;
     z-index: 1;
     height: 7rem;
-    width: 100%;
+    width: calc(100% + calc(var(--spacing-08) * 2));
     margin-top: auto;
   }
 `;
@@ -23,8 +30,16 @@ export const LogoContainer = styled.div`
   margin: var(--cds-spacing-08) 0;
   margin-top: auto;
   cursor: default;
+  width: 100%;
+  max-width: 900px;
   h1 {
     font-size: clamp(3rem, 8.5vmin, 6.5rem);
+    animation: ${titleAnim} 0.2s ease-out;
+    span {
+      animation: ${titleAnim} 0.8s ease-out;
+      animation-fill-mode: both;
+      transition: color 0.3s ease-in-out;
+    }
   }
   &:hover img {
     transform: rotate(-5deg);
