@@ -27,6 +27,7 @@ export const StyledHeader = styled.header`
 export const LogoContainer = styled.div`
   display: flex;
   gap: var(--spacing-06);
+  align-items: center;
   margin: var(--cds-spacing-08) 0;
   margin-top: auto;
   cursor: default;

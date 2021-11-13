@@ -60,7 +60,7 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing:border-box;
     animation: fadeInUp 0.3s ease-in-out;
     transition: color 0.15s ease-in, background-color 0.15s ease-in;
-    background-image: url("https://www.transparenttextures.com/patterns/random-grey-variations.png");
+    background-image: url("/header-pattern.png");
     background-blend-mode: overlay;
     @keyframes fadeInUp {
       from {
