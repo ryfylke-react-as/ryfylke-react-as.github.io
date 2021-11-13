@@ -14,7 +14,10 @@ type Props = {
 export const Header = ({ isLightmode }: Props) => {
   return (
     <StyledHeader>
-      <HeaderBackground />
+      <HeaderBackground
+        key={isLightmode ? "hbga" : "hbgb"}
+        isLightmode={isLightmode}
+      />
       <LogoContainer>
         <img
           src={isLightmode ? "/logo-lm.svg" : "/logo-dm.svg"}

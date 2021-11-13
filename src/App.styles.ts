@@ -40,8 +40,8 @@ export const GlobalStyles = createGlobalStyle`
       --ui-02: #D1CECA; 
       --ui-03: #C8C6C3; 
     }
-  *, *:before, *:after {
-    box-sizing-inherit;
+  html {
+    background-color: var(--background);
   }
   body, html {
     margin: 0;
@@ -68,7 +68,7 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
   .prefix__waves {
-  animation: ${sectionAnim} 0.6s ease-in-out;
+  animation: ${sectionAnim} 0.4s ease-in-out;
   }
   a {
     color: var(--link);

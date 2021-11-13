@@ -10,8 +10,10 @@ import {
 } from "./components";
 import { GlobalStyles, PumpingIcon } from "./App.styles";
 import "./fonts.css";
+import { useForm } from "@formspree/react";
 
 export default function App() {
+  const [state, handleSubmit] = useForm("mvodeazb");
   const [fs, setFs] = useState({
     email: "",
     message: "",
@@ -31,38 +33,6 @@ export default function App() {
       ...fs,
       [key]: value,
     });
-  };
-
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (fs.email && fs.message) {
-      changeFormInput("loading", true);
-      changeFormInput("success", false);
-      fetch(
-        "https://ewxpkphj05.execute-api.us-east-1.amazonaws.com/dev/static-site-mailer",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            reply_to: fs.email,
-            name: fs.email,
-            message: fs.message,
-          }),
-        }
-      )
-        .then((res) => res.json())
-        .then((res) => {
-          changeFormInput("loading", false);
-          changeFormInput("success", true);
-        })
-        .catch((err) => {
-          changeFormInput("loading", false);
-          changeFormInput("success", true);
-        });
-    } else {
-      changeFormInput("error", true);
-    }
-    return;
   };
 
   const registerInput = (key: keyof typeof fs) => ({
@@ -196,24 +166,33 @@ export default function App() {
             resten av verden i stil.
           </p>
           <form
-            onSubmit={onSubmit}
-            style={{ opacity: fs.loading ? 0.5 : 1 }}
+            onSubmit={handleSubmit}
+            style={{ opacity: state.submitting ? 0.5 : 1 }}
           >
             <label>
               E-post addresse
               <input
                 type="email"
-                {...registerInput("email")}
+                name="email"
                 placeholder="business@bedrift.no"
               />
             </label>
             <label>
-              Din melding
-              <textarea {...registerInput("message")} />
+              Interessert i
+              <select name="interresert_i">
+                <option>En prat</option>
+                <option>Utvikle nytt nettsted</option>
+                <option>Jobb på eksisterende nettsted</option>
+              </select>
             </label>
-            <button type="submit" disabled={fs.loading}>
-              {fs.success ? "Melding mottatt!" : "Kontakt oss"}
+            <label>
+              Utdyp
+              <textarea name="utdyp" />
+            </label>
+            <button type="submit" disabled={state.submitting}>
+              {state.submitting ? "Vent litt..." : "Kontakt oss"}
             </button>
+            <div>{state.succeeded && "Melding mottatt!"}</div>
           </form>
         </div>{" "}
         <img

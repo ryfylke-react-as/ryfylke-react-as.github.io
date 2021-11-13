@@ -9,8 +9,7 @@ const generateBackground = (props: SectionProps) => {
 
 export const sectionAnim = keyframes`
   from {
-    opacity:0.8;
-    transform:translateY(20px);
+    transform:translateY(4px);
   }
 `;
 
@@ -36,7 +35,7 @@ export const StyledSection = styled.section<SectionProps>`
   background: ${generateBackground};
   margin-bottom: var(--spacing-07);
   max-height: 450px;
-  animation: ${sectionAnim} 0.6s ease-in-out;
+  animation: ${sectionAnim} 0.4s ease-in-out;
   @media screen and (max-width: 850px) {
     max-height: 2000px;
     height: auto;
@@ -50,7 +49,7 @@ export const StyledSection = styled.section<SectionProps>`
     --width: 400px;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-03);
+    gap: var(--spacing-04);
     label {
       display: flex;
       flex-direction: column;
@@ -61,6 +60,12 @@ export const StyledSection = styled.section<SectionProps>`
       max-width: var(--width);
       flex-grow: 0;
       flex-shrink: 0;
+    }
+    select {
+      padding: var(--spacing-03);
+      background: var(--ui-01);
+      color: var(--text-01);
+      border: none;
     }
     input,
     textarea {

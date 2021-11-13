@@ -9,8 +9,8 @@ const titleAnim = keyframes`
 
 const bgAnim = keyframes`
   from {
-    opacity:0.5;
-    transform:scale(1.1) rotate(1deg);
+    opacity:0;
+    transform: translateY(-100%) scaleX(0);
   }
 `;
 
@@ -21,7 +21,9 @@ const headerBg = keyframes`
   }
 `;
 
-export const HeaderBackground = styled.div`
+export const HeaderBackground = styled.div<{
+  isLightmode?: boolean;
+}>`
   pointer-events: none;
   position: absolute;
   top: 0;
@@ -33,7 +35,7 @@ export const HeaderBackground = styled.div`
   animation: ${bgAnim} 0.6s ease-in-out;
   transform: scale(1);
   z-index: -1;
-  opacity: 0.5;
+  opacity: ${(props) => (props.isLightmode ? "0.5" : "0.7")};
 `;
 
 export const StyledHeader = styled.header`
@@ -43,6 +45,7 @@ export const StyledHeader = styled.header`
   align-items: center;
   padding: var(--spacing-09) var(--spacing-08) 0;
   position: relative;
+  z-index: 2;
   min-height: 50vh;
   svg {
     position: relative;
