@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 import { Heart } from "./App.assets";
+import { sectionAnim } from "./components/Section/Section.styles";
 
 export const GlobalStyles = createGlobalStyle`
   :root {
@@ -60,13 +61,14 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing:border-box;
     animation: fadeInUp 0.3s ease-in-out;
     transition: color 0.15s ease-in, background-color 0.15s ease-in;
-    background-image: url("/header-pattern.png");
-    background-blend-mode: overlay;
     @keyframes fadeInUp {
       from {
         opacity:0;
       }
     }
+  }
+  .prefix__waves {
+  animation: ${sectionAnim} 0.6s ease-in-out;
   }
   a {
     color: var(--link);

@@ -1,6 +1,7 @@
 import React from "react";
 import { Waves } from "../";
 import {
+  HeaderBackground,
   LogoContainer,
   StyledHeader,
   Tag,
@@ -13,6 +14,7 @@ type Props = {
 export const Header = ({ isLightmode }: Props) => {
   return (
     <StyledHeader>
+      <HeaderBackground />
       <LogoContainer>
         <img
           src={isLightmode ? "/logo-lm.svg" : "/logo-dm.svg"}

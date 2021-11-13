@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { SectionProps } from "./Section.types";
 
 const generateBackground = (props: SectionProps) => {
@@ -6,6 +6,13 @@ const generateBackground = (props: SectionProps) => {
 
   return `linear-gradient(to bottom, ${bgVal}, var(--ui-01))`;
 };
+
+export const sectionAnim = keyframes`
+  from {
+    opacity:0.8;
+    transform:translateY(20px);
+  }
+`;
 
 export const InnerContainer = styled.div<SectionProps>`
   max-width: 900px;
@@ -29,6 +36,7 @@ export const StyledSection = styled.section<SectionProps>`
   background: ${generateBackground};
   margin-bottom: var(--spacing-07);
   max-height: 450px;
+  animation: ${sectionAnim} 0.6s ease-in-out;
   @media screen and (max-width: 850px) {
     max-height: 2000px;
     height: auto;

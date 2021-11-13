@@ -7,6 +7,35 @@ const titleAnim = keyframes`
   }
 `;
 
+const bgAnim = keyframes`
+  from {
+    opacity:0.5;
+    transform:scale(1.1) rotate(1deg);
+  }
+`;
+
+const headerBg = keyframes`
+  from {
+    opacity:0;
+    transform:scale(0.99) rotate(1deg);
+  }
+`;
+
+export const HeaderBackground = styled.div`
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("/header-pattern.png");
+  background-blend-mode: overlay;
+  animation: ${bgAnim} 0.6s ease-in-out;
+  transform: scale(1);
+  z-index: -1;
+  opacity: 0.5;
+`;
+
 export const StyledHeader = styled.header`
   display: flex;
   gap: var(--spacing-07);
@@ -31,6 +60,7 @@ export const LogoContainer = styled.div`
   margin: var(--cds-spacing-08) 0;
   margin-top: auto;
   cursor: default;
+  animation: ${headerBg} 0.6s ease-in-out;
   width: 100%;
   max-width: 900px;
   h1 {

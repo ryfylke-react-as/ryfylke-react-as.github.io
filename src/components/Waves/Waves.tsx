@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { sectionAnim } from "../Section/Section.styles";
 
 const StyledGroup = styled.g`
   fill: var(--ui-01);
@@ -61,7 +62,9 @@ export function Waves(
           d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"
         />
       </defs>
-      <StyledGroup style={{ fill: props?.background ?? "var(--ui-01)" }}>
+      <StyledGroup
+        style={{ fill: props?.background ?? "var(--ui-01)" }}
+      >
         <use xlinkHref="#prefix__a" />
         <use xlinkHref="#prefix__a" x={50} y={3} />
         <use xlinkHref="#prefix__a" x={100} y={5} />
