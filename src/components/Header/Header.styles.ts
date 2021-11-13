@@ -42,7 +42,7 @@ export const LogoContainer = styled.div`
     }
   }
   &:hover img {
-    transform: rotate(-5deg);
+    transform: scale(1.05) rotate(-3deg);
   }
   img {
     width: clamp(35px, 6.5vmin, 12rem);

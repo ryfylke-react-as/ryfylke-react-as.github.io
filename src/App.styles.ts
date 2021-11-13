@@ -54,12 +54,14 @@ export const GlobalStyles = createGlobalStyle`
   }
   body {
     font-family: 'Ubuntu', sans-serif;
-    background:linear-gradient(to bottom, var(--background), 90%, var(--ui-03));
+    background-color:var(--background);
     color: var(--text-01);
     font-size: 16px;
     box-sizing:border-box;
     animation: fadeInUp 0.3s ease-in-out;
     transition: color 0.15s ease-in, background-color 0.15s ease-in;
+    background-image: url("https://www.transparenttextures.com/patterns/random-grey-variations.png");
+    background-blend-mode: overlay;
     @keyframes fadeInUp {
       from {
         opacity:0;
