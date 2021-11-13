@@ -25,6 +25,7 @@ export const InnerContainer = styled.div<SectionProps>`
 export const StyledSection = styled.section<SectionProps>`
   padding: var(--spacing-08);
   padding-bottom: 10rem;
+  transition: color 0.15s ease-in, background-color 0.15s ease-in;
   background: ${generateBackground};
   margin-bottom: var(--spacing-07);
   max-height: 450px;
@@ -103,6 +104,8 @@ export const StyledSection = styled.section<SectionProps>`
     li {
       padding-left: var(--spacing-03);
       line-height: 1.35em;
+      color: var(--text-01);
+      transition: none;
       ul {
         margin-top: var(--spacing-02);
       }

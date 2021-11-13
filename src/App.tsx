@@ -52,12 +52,10 @@ export default function App() {
       )
         .then((res) => res.json())
         .then((res) => {
-          console.log("Successful response from server: ", res);
           changeFormInput("loading", false);
           changeFormInput("success", true);
         })
         .catch((err) => {
-          console.error("Unsuccessful response from server: ", err);
           changeFormInput("loading", false);
           changeFormInput("success", true);
         });
@@ -69,10 +67,20 @@ export default function App() {
 
   const registerInput = (key: keyof typeof fs) => ({
     value: fs[key] as string,
-    onChange: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
-      changeFormInput(key, e?.target?.value),
+    onChange: (
+      e: React.ChangeEvent<
+        HTMLTextAreaElement | HTMLInputElement
+      >
+    ) => changeFormInput(key, e?.target?.value),
     name: key,
     disabled: fs.loading || fs.success,
+    style:
+      fs.error && !fs[key]
+        ? {
+            outline: "1px solid #dd1e1e",
+          }
+        : undefined,
+    required: true,
   });
 
   useEffect(() => {
@@ -113,16 +121,25 @@ export default function App() {
               ❤
             </PumpingIcon>
           </h2>
-          <p>Ryfylke React AS er din mellommann for moderne nett-teknologi.</p>
           <p>
-            Vi kan utføre oppgaver innenfor det som omfattes som{" "}
-            <strong>front-end</strong> teknologier. Dette inneholder blant annet
-            interaktivitet, animasjoner, søkeoptimalisering, responsive design,
-            og tilrettelegging for mennesker med funksjonshemminger.
+            Ryfylke React AS er din mellommann for moderne
+            nettside-teknologi.
           </p>
           <p>
-            Ryfylke React er åpne for prosjekter på eksisterende nettsted, i
-            tillegg til bistand til utvikling av helt nye nettsted.
+            Vi kan utføre oppgaver innenfor det som omfattes som{" "}
+            <strong>front-end</strong> teknologier. Dette
+            inneholder blant annet...
+          </p>
+          <ul>
+            <li>Interaktivitet</li>
+            <li>Animasjoner</li>
+            <li>Søkeoptimalisering</li>
+            <li>Responsive design.</li>
+          </ul>
+          <p>
+            Ryfylke React er åpne for prosjekter på eksisterende
+            nettsted, i tillegg til bistand til utvikling av helt
+            nye nettsted.
           </p>
         </div>
         <Blocks />
@@ -135,26 +152,33 @@ export default function App() {
             Kompetanse <span>&</span> Erfaring
           </h2>
           <p>
-            <a href="https://haakon.dev" target="_blank" rel="noreferrer">
+            <a
+              href="https://haakon.dev"
+              target="_blank"
+              rel="noreferrer"
+            >
               Håkon Svennes Underbakke
             </a>{" "}
-            har jobbet innen front-end nettside utvikling profesjonelt i 5 år.
-            Han har jobbet som fast ansatt på in-house prosjekter hos LIGL AS,
-            som konsulent for Idean (Capgemini Invent), og nå som konsulent for
+            har jobbet innen front-end nettside utvikling
+            profesjonelt i 5 år. Han har jobbet som fast ansatt
+            på in-house prosjekter hos LIGL AS, som konsulent for
+            Idean (Capgemini Invent), og nå som konsulent for
             eget firma - Ryfylke React AS.
           </p>
           <p>
-            Som konsulent har Håkon jobbet på prosjekter hos blant annet
-            Equinor, NDLA og Telenor. Det gjør at Håkon har erfaring med å jobbe
-            både på store prosjekter, med rutinerte arbeidsmetodikker - i
+            Som konsulent har Håkon jobbet på prosjekter hos
+            blant annet Equinor, NDLA og Telenor. Det gjør at
+            Håkon har erfaring med å jobbe både på store
+            prosjekter, med rutinerte arbeidsmetodikker - i
             tillegg til mindre prosjekter.
           </p>
           <p>
-            Vi har sterk kompetanse innen de grunnleggende frontend
-            teknologiene; HTML, CSS & JavaScript, i tillegg til rammeverk som
-            React.JS, og teknologiene som følger med det. Vi har også kunnskap
-            rundt resten av prosessen av å publisere et nettsted, og kan gjerne
-            rådføre for veien videre.
+            Vi har sterk kompetanse innen de grunnleggende
+            frontend teknologiene; HTML, CSS & JavaScript, i
+            tillegg til rammeverk som React.JS, og teknologiene
+            som følger med det. Vi har også kunnskap rundt resten
+            av prosessen av å publisere et nettsted, og kan
+            gjerne rådføre for veien videre.
           </p>
         </div>{" "}
       </Section>
@@ -167,10 +191,14 @@ export default function App() {
         <div>
           <h2>La oss finne en løsning</h2>
           <p>
-            Trenger du hjelp med hele prosessen? Bare litt? Vi finner en
-            løsning, og du får ditt produkt ut til resten av verden i stil.
+            Trenger du hjelp med hele prosessen? Bare litt? Vi
+            finner en løsning, og du får ditt produkt ut til
+            resten av verden i stil.
           </p>
-          <form onSubmit={onSubmit} style={{ opacity: fs.loading ? 0.5 : 1 }}>
+          <form
+            onSubmit={onSubmit}
+            style={{ opacity: fs.loading ? 0.5 : 1 }}
+          >
             <label>
               E-post addresse
               <input

@@ -7,25 +7,30 @@ export const StyledHeader = styled.header`
   align-items: center;
   padding-top: var(--spacing-09);
   position: relative;
+  min-height: 50vh;
   svg {
     position: relative;
     z-index: 1;
     height: 7rem;
     width: 100%;
-    margin-top: calc(var(--spacing-03) * -1);
+    margin-top: auto;
   }
 `;
 
 export const LogoContainer = styled.div`
   display: flex;
-  gap: var(--spacing-04);
+  gap: var(--spacing-06);
   margin: var(--cds-spacing-08) 0;
+  margin-top: auto;
   cursor: default;
+  h1 {
+    font-size: clamp(3rem, 8.5vmin, 6.5rem);
+  }
   &:hover img {
     transform: rotate(-5deg);
   }
   img {
-    width: 35px;
+    width: clamp(35px, 6.5vmin, 12rem);
     transition: transform 0.1s ease-in;
     transform: translateY(6%);
     user-select: none;

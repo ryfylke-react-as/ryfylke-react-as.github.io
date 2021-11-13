@@ -4,7 +4,7 @@ import { Heart } from "./App.assets";
 export const GlobalStyles = createGlobalStyle`
   :root {
     /** VARIABLAR DARKMODE **/ 
-    /*
+    /*                            r   g   b    a
       For rgba, bruk syntax: rgba(255,255,255,0.5)
       For rgb:               rgb(255,255,255)
       For hex:               #ffffff
@@ -53,6 +53,7 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 16px;
     box-sizing:border-box;
     animation: fadeInUp 0.3s ease-in-out;
+    transition: color 0.15s ease-in, background-color 0.15s ease-in;
     @keyframes fadeInUp {
       from {
         opacity:0;
@@ -66,8 +67,6 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
   .App {
-    max-width:1200px;
-    margin:0 auto;
     position:relative;
   }
   h1,h2,h3,h4{margin:0 0 var(--spacing-03);}
