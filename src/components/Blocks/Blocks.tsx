@@ -3,15 +3,6 @@ import { Container } from "./Blocks.styles";
 
 export const Blocks = () => (
   <Container>
-    <div />
-    <div />
-    <div />
-    <div />
-    <div />
-    <div />
-    <div />
-    <div />
-
     <div className="laptop">
       <div className="content">
         <ul>

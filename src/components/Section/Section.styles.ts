@@ -132,4 +132,32 @@ export const StyledSection = styled.section<SectionProps>`
       display: inline-block;
     }
   }
+  &.checklist {
+    padding-top:var(--spacing-09);
+    svg {
+      max-width:22rem;
+      max-height:19rem;
+      opacity:0.5;
+      path {
+        transition: all 0.2s ease-out;
+      }
+    }
+    --color-01: violet;
+    --color-02: blue;
+    ul li{
+      &::marker {
+      content: "✅";
+      }
+      ul{
+        padding-left:var(--spacing-03);
+        margin-bottom:var(--spacing-03);
+         li::marker {
+          content:"-";
+        }
+      }}
+    }
+    ul li ul li::marker {
+      content: "-";
+    }
+  }
 `;

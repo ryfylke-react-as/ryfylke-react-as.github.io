@@ -7,20 +7,52 @@ import {
   CodeWriter,
   LightmodeToggle,
   Blocks,
+  Personalize,
 } from "./components";
 import { GlobalStyles, PumpingIcon } from "./App.styles";
 import "./fonts.css";
 import { useForm } from "@formspree/react";
 
+let timer: any = setTimeout(() => {});
+const TIME = 5000;
+
+let lastColor: string;
+
+function getActualRandomColor() {
+  let letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+const getComplementaryColor = (color = "") => {
+  const colorPart = color.slice(1);
+  const ind = parseInt(colorPart, 16);
+  let iter = ((1 << (4 * colorPart.length)) - 1 - ind).toString(
+    16
+  );
+  while (iter.length < colorPart.length) {
+    iter = "0" + iter;
+  }
+  return "#" + iter;
+};
+
+function getRandomColor() {
+  if (lastColor) {
+    return getComplementaryColor(lastColor);
+  } else {
+    return getActualRandomColor();
+  }
+}
+
 export default function App() {
   const [state, handleSubmit] = useForm("mvodeazb");
-  const [fs, setFs] = useState({
-    email: "",
-    message: "",
-    loading: false,
-    error: false,
-    success: false,
-  });
+  const [currentColors, setCurrentColors] = useState([
+    "violet",
+    "blue",
+  ]);
   const [isLightmode, setLightmode] = useState(
     window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -28,30 +60,10 @@ export default function App() {
       : true
   );
 
-  const changeFormInput = (key: keyof typeof fs, value: any) => {
-    setFs({
-      ...fs,
-      [key]: value,
-    });
+  const changeColors = () => {
+    setCurrentColors([getRandomColor(), getRandomColor()]);
+    timer = setTimeout(() => changeColors(), TIME);
   };
-
-  const registerInput = (key: keyof typeof fs) => ({
-    value: fs[key] as string,
-    onChange: (
-      e: React.ChangeEvent<
-        HTMLTextAreaElement | HTMLInputElement
-      >
-    ) => changeFormInput(key, e?.target?.value),
-    name: key,
-    disabled: fs.loading || fs.success,
-    style:
-      fs.error && !fs[key]
-        ? {
-            outline: "1px solid #dd1e1e",
-          }
-        : undefined,
-    required: true,
-  });
 
   useEffect(() => {
     const storedLightmode = localStorage.getItem("rr-lm");
@@ -62,10 +74,6 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    console.log(fs);
-  }, [fs]);
-
-  useEffect(() => {
     if (!isLightmode) {
       localStorage.setItem("rr-lm", JSON.stringify(false));
       document.body.classList.remove("lm");
@@ -74,6 +82,11 @@ export default function App() {
       localStorage.setItem("rr-lm", JSON.stringify(true));
     }
   }, [isLightmode]);
+
+  useEffect(() => {
+    timer = setTimeout(() => changeColors(), TIME);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="App">
@@ -113,6 +126,45 @@ export default function App() {
           </p>
         </div>
         <Blocks />
+      </Section>
+
+      <SmallWaves background="var(--ui-02)" />
+      <Section
+        background="var(--ui-02)"
+        flex
+        className="checklist"
+        style={
+          {
+            "--color-01": currentColors[0],
+            "--color-02": currentColors[1],
+          } as React.CSSProperties
+        }
+      >
+        <div>
+          <h2>Vi tilbyr</h2>
+          <ul>
+            <li>
+              <h3>Design & utvikling av nettsted</h3>
+              <ul>
+                <li>Responsive til alle enheter</li>
+                <li>Søkeoptimalisert</li>
+                <li>Basert på din data-kilde</li>
+                <li>
+                  Mulighet for tilpassing gjennom egne systemer
+                </li>
+              </ul>
+            </li>
+            <li>
+              <h3>Videreutvikling på eksisterende nettsted</h3>
+            </li>
+            <li>
+              <h3>
+                Bistand til spørsmål rundt utvikling av nettsted
+              </h3>
+            </li>
+          </ul>
+        </div>
+        <Personalize />
       </Section>
       <SmallWaves background="var(--ui-02)" />
       <Section background="var(--ui-02)" flex>

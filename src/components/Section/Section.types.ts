@@ -5,4 +5,5 @@ export type SectionProps = {
   background?: string;
   style?: CSSProperties;
   children?: ReactNode;
+  className?: string;
 };
