@@ -35,6 +35,8 @@ export const StyledSection = styled.section<SectionProps>`
   background: ${generateBackground};
   margin-bottom: var(--spacing-07);
   max-height: 450px;
+  position: relative;
+  z-index: 2;
   animation: ${sectionAnim} 0.4s ease-in-out;
   @media screen and (max-width: 850px) {
     max-height: 2000px;

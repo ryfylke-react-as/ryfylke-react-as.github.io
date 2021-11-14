@@ -10,7 +10,7 @@ const titleAnim = keyframes`
 const bgAnim = keyframes`
   from {
     opacity:0;
-    transform: translateY(-100%) scaleX(0);
+    transform:translateY(100px);
   }
 `;
 
@@ -23,19 +23,30 @@ const headerBg = keyframes`
 
 export const HeaderBackground = styled.div<{
   isLightmode?: boolean;
+  noAnim?: boolean;
 }>`
   pointer-events: none;
   position: absolute;
-  top: 0;
+  top: -200px;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 0px;
   background-image: url("/header-pattern.png");
   background-blend-mode: overlay;
+  transform-origin: center top;
   animation: ${bgAnim} 0.6s ease-in-out;
-  transform: scale(1);
+  animation-direction: ${(props) =>
+    props.isLightmode ? "reverse" : "normal"};
+  transform: translateY(124px);
   z-index: -1;
-  opacity: ${(props) => (props.isLightmode ? "0.5" : "0.7")};
+  opacity: ${(props) => (props.isLightmode ? "0.3" : "0.4")};
+  ${(props) =>
+    props.noAnim &&
+    `
+    animation: none;
+    transform:translateY(64px);
+    opacity:0.3;
+  `};
 `;
 
 export const StyledHeader = styled.header`
@@ -45,7 +56,7 @@ export const StyledHeader = styled.header`
   align-items: center;
   padding: var(--spacing-09) var(--spacing-08) 0;
   position: relative;
-  z-index: 2;
+  z-index: 1;
   min-height: 50vh;
   svg {
     position: relative;

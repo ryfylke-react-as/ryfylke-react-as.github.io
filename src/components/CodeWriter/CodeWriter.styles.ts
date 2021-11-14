@@ -6,6 +6,9 @@ export const StyledCode = styled.div`
   border-radius: 10px;
   box-shadow: 0px 0px 16px -8px #0f1e21;
   filter: hue-rotate(250deg);
+  min-width: 399px !important;
+  height: 390px;
+  margin-bottom: auto;
 
   @-moz-document url-prefix() {
     background: #282528;
@@ -15,8 +18,8 @@ export const StyledCode = styled.div`
   video {
     width: 100%;
     clip-path: polygon(0 1%, 100% 1%, 100% 100%, 0% 100%);
-    @media screen and (min-width: 1200px) {
-      min-width: 386px;
-    }
+    /*     @media screen and (min-width: 1200px) {
+      min-width: 408px;
+    } */
   }
 `;
