@@ -13,6 +13,7 @@ import { GlobalStyles, PumpingIcon } from "./App.styles";
 import "./fonts.css";
 import { useForm } from "@formspree/react";
 import { ReactNode } from "hoist-non-react-statics/node_modules/@types/react";
+import { useInView } from "react-intersection-observer";
 
 let timer: any = setTimeout(() => {});
 const TIME = 5000;
@@ -50,6 +51,7 @@ function getRandomColor() {
 
 export default function App() {
   const [state, handleSubmit] = useForm("mvodeazb");
+  const { ref: footerRef, inView: footerInView } = useInView();
   const [currentColors, setCurrentColors] = useState([
     "violet",
     "blue",
@@ -212,7 +214,7 @@ export default function App() {
         flex
         style={{ position: "relative", overflow: "hidden" }}
       >
-        <div>
+        <div ref={footerRef}>
           <h2>La oss finne en løsning</h2>
           <p>
             Trenger du hjelp med hele prosessen? Bare litt? Vi
@@ -262,6 +264,11 @@ export default function App() {
             opacity: 0.1,
             pointerEvents: "none",
             userSelect: "none",
+            transition:
+              "transform 0.9s cubic-bezier(0.175, 0.5, 0.1, 1.275)",
+            transform: footerInView
+              ? "rotate(-5deg)"
+              : "rotate(15deg)",
           }}
         />
       </Section>

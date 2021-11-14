@@ -18,18 +18,6 @@ export const CodeWriter = (): ReactElement => {
       videoRef.current.muted = true;
     }
   }, [videoRef?.current]);
-
-  useEffect(() => {
-    if (
-      inView &&
-      (!hasPlayed ||
-        (videoRef?.current?.paused && !videoRef?.current?.ended))
-    ) {
-      videoRef?.current?.play?.();
-    } else {
-      videoRef?.current?.pause?.();
-    }
-  }, [inView]);
   return (
     <StyledCode ref={ref}>
       <video
@@ -39,17 +27,10 @@ export const CodeWriter = (): ReactElement => {
         controls={false}
         onClick={() => {
           if (videoRef?.current) {
-            videoRef.current.currentTime =
-              videoRef.current.duration;
+            videoRef.current.play();
           }
         }}
-        title="Click to stop"
-        onMouseOver={() => {
-          if (videoRef?.current && !hasPlayed) {
-            videoRef?.current.play();
-            setHasPlayed(true);
-          }
-        }}
+        title="Click to play video"
         ref={videoRef}
       />
     </StyledCode>

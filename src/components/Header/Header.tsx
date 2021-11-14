@@ -1,4 +1,5 @@
 import React from "react";
+import { useInView } from "react-intersection-observer";
 import { Waves } from "../";
 import {
   HeaderBackground,
@@ -12,6 +13,7 @@ type Props = {
 };
 
 export const Header = ({ isLightmode }: Props) => {
+  const { ref, inView } = useInView();
   return (
     <StyledHeader>
       <HeaderBackground isLightmode={isLightmode} noAnim />
@@ -27,7 +29,10 @@ export const Header = ({ isLightmode }: Props) => {
           } vikingskip, hvor tuppen ser ut som et drage-hode.`}
         />
         <h1>
-          Ryfylke <span>React</span>
+          Ryfylke{" "}
+          <span ref={ref} key={inView ? "a" : "b"}>
+            React
+          </span>
         </h1>
       </LogoContainer>
       <Waves />
