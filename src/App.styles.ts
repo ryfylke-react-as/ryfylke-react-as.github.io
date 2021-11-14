@@ -66,6 +66,10 @@ export const GlobalStyles = createGlobalStyle`
         opacity:0;
       }
     }
+    @media screen and (max-width: 500px) {
+      overflow-x:hidden;
+      max-width:100vw;
+    }
   }
   .prefix__waves {
   animation: ${sectionAnim} 0.4s ease-in-out;

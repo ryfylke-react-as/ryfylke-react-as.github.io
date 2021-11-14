@@ -6,3 +6,4 @@ export { CodeWriter } from "./CodeWriter";
 export { LightmodeToggle } from "./LightmodeToggle";
 export { Blocks } from "./Blocks";
 export { Personalize } from "./Illustrations/Personalize";
+export { Check } from "./Illustrations/Check";

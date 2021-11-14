@@ -15,11 +15,19 @@ export const StyledCode = styled.div`
     filter: hue-rotate(250deg);
   }
 
+  @media screen and (max-width: 700px) {
+    margin-bottom: 8rem;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media screen and (max-width: 500px) {
+    margin-bottom: 2rem;
+  }
+
   video {
     width: 100%;
     clip-path: polygon(0 1%, 100% 1%, 100% 100%, 0% 100%);
-    /*     @media screen and (min-width: 1200px) {
-      min-width: 408px;
-    } */
   }
 `;

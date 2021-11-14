@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import {
   Header,
   Section,
-  Browser,
   SmallWaves,
   CodeWriter,
   LightmodeToggle,
   Blocks,
   Personalize,
+  Check,
 } from "./components";
 import { GlobalStyles, PumpingIcon } from "./App.styles";
 import "./fonts.css";
 import { useForm } from "@formspree/react";
+import { ReactNode } from "hoist-non-react-statics/node_modules/@types/react";
 
 let timer: any = setTimeout(() => {});
 const TIME = 5000;
@@ -143,25 +144,26 @@ export default function App() {
         <div>
           <h2>Vi tilbyr</h2>
           <ul>
-            <li>
-              <h3>Design & utvikling av nettsted</h3>
-              <ul>
-                <li>Responsive til alle enheter</li>
-                <li>Søkeoptimalisert</li>
-                <li>Basert på din data-kilde</li>
-                <li>
-                  Mulighet for tilpassing gjennom egne systemer
-                </li>
-              </ul>
-            </li>
-            <li>
-              <h3>Videreutvikling på eksisterende nettsted</h3>
-            </li>
-            <li>
-              <h3>
-                Bistand til spørsmål rundt utvikling av nettsted
-              </h3>
-            </li>
+            <TilbyrLi
+              submenu={
+                <ul>
+                  <li>Responsive til alle enheter</li>
+                  <li>Søkeoptimalisert</li>
+                  <li>Basert på din data-kilde</li>
+                  <li>
+                    Mulighet for tilpassing gjennom egne systemer
+                  </li>
+                </ul>
+              }
+            >
+              Design & utvikling av nettsted
+            </TilbyrLi>
+            <TilbyrLi>
+              Videreutvikling på eksisterende nettsted
+            </TilbyrLi>
+            <TilbyrLi>
+              Bistand til spørsmål rundt utvikling av nettsted
+            </TilbyrLi>
           </ul>
         </div>
         <Personalize />
@@ -266,3 +268,20 @@ export default function App() {
     </div>
   );
 }
+
+const TilbyrLi = ({
+  children,
+  submenu,
+}: {
+  children: ReactNode;
+  submenu?: ReactNode;
+}) => {
+  return (
+    <li>
+      <h3>
+        <Check /> {children}
+      </h3>{" "}
+      {submenu ?? ""}
+    </li>
+  );
+};

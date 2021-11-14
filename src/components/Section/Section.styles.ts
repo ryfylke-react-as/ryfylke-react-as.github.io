@@ -42,6 +42,12 @@ export const StyledSection = styled.section<SectionProps>`
     max-height: 2000px;
     height: auto;
   }
+  @media screen and (max-width: 500px) {
+    h2 {
+      justify-content: center;
+      margin-bottom: var(--spacing-09);
+    }
+  }
   &:not(:first-of-type) {
     margin-top: -12rem;
     position: relative;
@@ -115,7 +121,16 @@ export const StyledSection = styled.section<SectionProps>`
     line-height: 1.35em;
     color: var(--text-02);
   }
+  &:not(.checklist) {
+    ul li::marker {
+      content: "*";
+      color: var(--text-02);
+      font-size: 0.8em;
+      display: inline-block;
+    }
+  }
   ul {
+    padding-left: var(--spacing-06);
     li {
       padding-left: var(--spacing-03);
       line-height: 1.35em;
@@ -125,39 +140,51 @@ export const StyledSection = styled.section<SectionProps>`
         margin-top: var(--spacing-02);
       }
     }
-    li::marker {
-      content: "*";
-      color: var(--text-02);
-      font-size: 0.8em;
-      display: inline-block;
-    }
   }
   &.checklist {
-    padding-top:var(--spacing-09);
+    padding-top: var(--spacing-09);
     svg {
-      max-width:22rem;
-      max-height:19rem;
-      opacity:0.5;
+      max-width: 22rem;
+      max-height: 19rem;
+      opacity: 0.5;
       path {
         transition: all 0.2s ease-out;
+      }
+      @media screen and (max-width: 700px) {
+        display: none;
       }
     }
     --color-01: violet;
     --color-02: blue;
-    ul li{
-      &::marker {
-      content: "✅";
-      }
-      ul{
-        padding-left:var(--spacing-03);
-        margin-bottom:var(--spacing-03);
-         li::marker {
-          content:"-";
+    ul {
+      list-style: none;
+      li {
+        list-style: none;
+        h3 {
+          display: flex;
+          gap: var(--spacing-03);
+          align-items: center;
+          font-weight: normal;
+          svg {
+            width: 0.8em;
+            height: 0.8em;
+            fill: var(--link);
+            flex-shrink: 0;
+          }
         }
-      }}
+      }
     }
-    ul li ul li::marker {
-      content: "-";
+    ul > li > ul {
+      padding-left: var(--spacing-03);
+      margin-bottom: var(--spacing-03);
+      color: var(--text-02);
+      opacity: 0.8;
+      > li::marker {
+        content: "-";
+      }
+      > li::before {
+        display: none;
+      }
     }
   }
 `;
