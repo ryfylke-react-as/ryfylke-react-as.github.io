@@ -10,6 +10,11 @@ export const StyledCode = styled.div`
   height: 390px;
   margin-bottom: auto;
 
+  @media screen and (max-width: 500px) {
+    max-width: 280px !important;
+    min-width: 0px !important;
+  }
+
   @-moz-document url-prefix() {
     background: #282528;
     filter: hue-rotate(250deg);
