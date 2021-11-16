@@ -58,6 +58,9 @@ export const StyledSection = styled.section<SectionProps>`
     display: flex;
     flex-direction: column;
     gap: var(--spacing-04);
+    @media screen and (max-width: 500px) {
+      --width: 100%;
+    }
     label {
       display: flex;
       flex-direction: column;
