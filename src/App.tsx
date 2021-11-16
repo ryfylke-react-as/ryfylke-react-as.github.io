@@ -257,7 +257,7 @@ export default function App() {
             isLightmode ? "blått" : "oransje"
           } vikingskip, hvor tuppen ser ut som et drage-hode.`}
           style={{
-            width: "30%",
+            width: "clamp(15rem, 30%, 30rem)",
             position: "absolute",
             right: "-5%",
             bottom: "-20%",
