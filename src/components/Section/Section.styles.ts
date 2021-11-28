@@ -76,11 +76,12 @@ export const StyledSection = styled.section<SectionProps>`
       padding: var(--spacing-03);
       background: var(--ui-01);
       color: var(--text-01);
-      border: none;
+      border: 1px solid var(--ui-03);
+      border-radius: 4px;
     }
     input,
     textarea {
-      border: none;
+      border: 1px solid var(--ui-03);
       border-radius: 4px;
       background: var(--ui-01);
       padding: var(--spacing-04);
