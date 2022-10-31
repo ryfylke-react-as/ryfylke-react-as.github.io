@@ -1,16 +1,44 @@
 import * as React from "react";
+import styled, { keyframes } from "styled-components";
+
+const anim = keyframes`
+  20% {
+    transform:scale(1);
+  }
+  30% {
+    transform:scale(1.1);
+  }
+  40% {
+    transform:scale(1.1) rotate(360deg);
+  }
+`;
+
+const StyledSVG = styled.svg`
+  transition: 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+  }
+  #IT,
+  .plus {
+    transform: rotate(0deg);
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: ${anim} 5s ease-in-out infinite;
+    animation-delay: 3.5s;
+  }
+`;
 
 export function Personalize(
   props: React.SVGProps<SVGSVGElement>
 ) {
   return (
-    <svg
+    <StyledSVG
       xmlns="http://www.w3.org/2000/svg"
       data-name="Layer 1"
       width={897.318}
       height={556.975}
       viewBox="0 0 897 756"
-      {...props}
+      {...(props as any)}
     >
       <path
         d=" 10.388h-26.81a2.03 2.03 0 000 4.06h26.81a2.03 2.03 0 000-4.06zM774.304 17.998h-26.81a2.03 2.03 0 000 4.06h26.81a2.03 2.03 0 000-4.06zM656.713 116.141h-434.01a8.07 8.07 0 00-8.07 8.06v204.87a8.079 8.079 0 008.07 8.07h434.01a8.077 8.077 0 008.06-8.07v-204.87a8.068 8.068 0 00-8.06-8.06z"
@@ -34,10 +62,12 @@ export function Personalize(
       <path
         d="M869.68 238.348a27.638 27.638 0 1127.638-27.638 27.638 27.638 0 01-27.638 27.638z"
         fill="var(--color-02)"
+        className="plus"
       />
       <path
         d="M880.586 207.984h-8.18v-8.18a2.726 2.726 0 00-5.452 0v8.18h-8.179a2.726 2.726 0 100 5.452h8.18v8.18a2.726 2.726 0 005.452 0v-8.18h8.179a2.726 2.726 0 100-5.452z"
         fill="#fff"
+        className="plus"
       />
       <path
         d="M447.883 289.212h-105.01a8.079 8.079 0 00-8.07 8.07v39.86h121.14v-39.86a8.077 8.077 0 00-8.06-8.07z"
@@ -56,14 +86,17 @@ export function Personalize(
       <path
         d="M340.68 429.348a27.638 27.638 0 1127.638-27.638 27.638 27.638 0 01-27.638 27.638z"
         fill="var(--color-01)"
+        className="plus"
       />
       <path
         d="M351.586 398.984h-8.18v-8.18a2.726 2.726 0 10-5.452 0v8.18h-8.179a2.726 2.726 0 100 5.452h8.18v8.18a2.726 2.726 0 105.452 0v-8.18h8.179a2.726 2.726 0 100-5.452z"
         fill="#fff"
+        className="plus"
       />
       <path
         d="M327.887 228.266h-105.01a8.076 8.076 0 01-8.067-8.066v-95.867a8.075 8.075 0 018.067-8.067h105.01a8.075 8.075 0 018.066 8.067V220.2a8.076 8.076 0 01-8.066 8.066z"
         fill="var(--color-01)"
+        opacity={0}
       />
       <circle
         cx={253.816}
@@ -77,6 +110,7 @@ export function Personalize(
       />
       <path
         d="M327.887 228.266h-105.01a8.076 8.076 0 01-8.067-8.066v-95.867a8.075 8.075 0 018.067-8.067h105.01a8.075 8.075 0 018.066 8.067V220.2a8.076 8.076 0 01-8.066 8.066z"
+        id="IT"
         fill="var(--color-01)"
         opacity={0.5}
       />
@@ -85,7 +119,7 @@ export function Personalize(
         d="M306.139 185.602h-61.514a3.898 3.898 0 110-7.795h61.514a3.898 3.898 0 110 7.795zM274.308 201.004h-29.683a3.898 3.898 0 110-7.796h29.683a3.898 3.898 0 110 7.796z"
         fill="#fff"
       />
-    </svg>
+    </StyledSVG>
   );
 }
 

@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from "react";
+import { useForm } from "@formspree/react";
+import React, { ReactNode, useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import { GlobalStyles, PumpingIcon } from "./App.styles";
 import {
+  Blocks,
+  Check,
   Header,
+  LightmodeToggle,
+  Personalize,
   Section,
   SmallWaves,
-  CodeWriter,
-  LightmodeToggle,
-  Blocks,
-  Personalize,
-  Check,
 } from "./components";
-import { GlobalStyles, PumpingIcon } from "./App.styles";
 import "./fonts.css";
-import { useForm } from "@formspree/react";
-import { ReactNode } from "hoist-non-react-statics/node_modules/@types/react";
-import { useInView } from "react-intersection-observer";
 
 let timer: any = setTimeout(() => {});
 const TIME = 5000;
@@ -172,7 +170,6 @@ export default function App() {
       </Section>
       <SmallWaves background="var(--ui-02)" />
       <Section background="var(--ui-02)" flex>
-        <CodeWriter />
         <div>
           <h2>
             Kompetanse <span>&</span> Erfaring
