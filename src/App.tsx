@@ -1,5 +1,5 @@
 import { useForm } from "@formspree/react";
-import React, { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { GlobalStyles, PumpingIcon } from "./App.styles";
 import {
@@ -7,53 +7,18 @@ import {
   Check,
   Header,
   LightmodeToggle,
-  Personalize,
   Section,
   SmallWaves,
 } from "./components";
 import "./fonts.css";
 
-let timer: any = setTimeout(() => {});
-const TIME = 5000;
-
-let lastColor: string;
-
-function getActualRandomColor() {
-  let letters = "0123456789ABCDEF";
-  let color = "#";
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
-
-const getComplementaryColor = (color = "") => {
-  const colorPart = color.slice(1);
-  const ind = parseInt(colorPart, 16);
-  let iter = ((1 << (4 * colorPart.length)) - 1 - ind).toString(
-    16
-  );
-  while (iter.length < colorPart.length) {
-    iter = "0" + iter;
-  }
-  return "#" + iter;
-};
-
-function getRandomColor() {
-  if (lastColor) {
-    return getComplementaryColor(lastColor);
-  } else {
-    return getActualRandomColor();
-  }
-}
-
 export default function App() {
   const [state, handleSubmit] = useForm("mvodeazb");
   const { ref: footerRef, inView: footerInView } = useInView();
-  const [currentColors, setCurrentColors] = useState([
-    "violet",
-    "blue",
-  ]);
+  const [fs, setFs] = useState({
+    email: "",
+    message: "",
+  });
   const [isLightmode, setLightmode] = useState(
     window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -61,9 +26,12 @@ export default function App() {
       : true
   );
 
-  const changeColors = () => {
-    setCurrentColors([getRandomColor(), getRandomColor()]);
-    timer = setTimeout(() => changeColors(), TIME);
+  const onSubmit: React.FormEventHandler<HTMLFormElement> = (
+    event
+  ) => {
+    if (true) {
+      handleSubmit(event);
+    }
   };
 
   useEffect(() => {
@@ -84,10 +52,17 @@ export default function App() {
     }
   }, [isLightmode]);
 
-  useEffect(() => {
-    timer = setTimeout(() => changeColors(), TIME);
-    return () => clearTimeout(timer);
-  }, []);
+  let formOK = true;
+
+  switch (true) {
+    case /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(fs.email) ===
+      false:
+    case fs.message.length < 1:
+      formOK = false;
+      break;
+    default:
+      break;
+  }
 
   return (
     <div className="App">
@@ -134,12 +109,6 @@ export default function App() {
         background="var(--ui-02)"
         flex
         className="checklist"
-        style={
-          {
-            "--color-01": currentColors[0],
-            "--color-02": currentColors[1],
-          } as React.CSSProperties
-        }
       >
         <div>
           <h2>Vi tilbyr</h2>
@@ -166,7 +135,6 @@ export default function App() {
             </TilbyrLi>
           </ul>
         </div>
-        <Personalize />
       </Section>
       <SmallWaves background="var(--ui-02)" />
       <Section background="var(--ui-02)" flex>
@@ -209,7 +177,11 @@ export default function App() {
       <Section
         background="var(--ui-03)"
         flex
-        style={{ position: "relative", overflow: "hidden" }}
+        style={{
+          position: "relative",
+          overflow: "hidden",
+          paddingBottom: "15rem",
+        }}
       >
         <div ref={footerRef}>
           <h2>La oss finne en løsning</h2>
@@ -219,7 +191,7 @@ export default function App() {
             resten av verden i stil.
           </p>
           <form
-            onSubmit={handleSubmit}
+            onSubmit={onSubmit}
             style={{ opacity: state.submitting ? 0.5 : 1 }}
           >
             <label>
@@ -228,6 +200,10 @@ export default function App() {
                 type="email"
                 name="email"
                 placeholder="business@bedrift.no"
+                value={fs.email}
+                onChange={(e) =>
+                  setFs({ ...fs, email: e.target.value })
+                }
               />
             </label>
             <label>
@@ -240,9 +216,22 @@ export default function App() {
             </label>
             <label>
               Utdyp
-              <textarea name="utdyp" />
+              <textarea
+                name="utdyp"
+                value={fs.message}
+                onChange={(e) =>
+                  setFs({ ...fs, message: e.target.value })
+                }
+              />
             </label>
-            <button type="submit" disabled={state.submitting}>
+            <div style={{ fontSize: "0.875rem" }}>
+              {!formOK &&
+                "Vennligst fyll ut gyldig e-post & utdyp."}
+            </div>
+            <button
+              type="submit"
+              disabled={state.submitting || formOK === false}
+            >
               {state.submitting ? "Vent litt..." : "Kontakt oss"}
             </button>
             <div>{state.succeeded && "Melding mottatt!"}</div>

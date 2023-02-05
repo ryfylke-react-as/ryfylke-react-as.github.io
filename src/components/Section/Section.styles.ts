@@ -18,6 +18,8 @@ export const InnerContainer = styled.div<SectionProps>`
   margin: 0 auto;
   display: ${(props) => (props.flex ? "flex" : "block")};
   gap: var(--spacing-09);
+  background: var(--ui-02);
+  padding: var(--spacing-08);
   @media screen and (max-width: 700px) {
     flex-direction: column;
     align-items: center;
@@ -38,6 +40,10 @@ export const StyledSection = styled.section<SectionProps>`
   position: relative;
   z-index: 2;
   animation: ${sectionAnim} 0.4s ease-in-out;
+  h2 {
+    font-size: 2.25rem;
+    margin: 0 0 var(--spacing-07);
+  }
   @media screen and (max-width: 850px) {
     max-height: 2000px;
     height: auto;
@@ -124,6 +130,7 @@ export const StyledSection = styled.section<SectionProps>`
     max-width: 700px;
     line-height: 1.35em;
     color: var(--text-02);
+    font-size: 1.1rem;
   }
   &:not(.checklist) {
     ul li::marker {
