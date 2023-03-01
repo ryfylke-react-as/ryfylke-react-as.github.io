@@ -7,7 +7,6 @@ export const Container = styled.div`
   min-height: 220px;
   width: 40%;
   overflow: hidden;
-  opacity: 0.5;
   padding-bottom: var(--spacing-07);
   position: relative;
   border-radius: 50%;
@@ -16,8 +15,8 @@ export const Container = styled.div`
   @keyframes rotate1 {
     from {
       --rotate: 0deg;
-      transform: translate(0%, 110%) perspective(520px) rotateX(0deg)
-        rotateY(0deg);
+      transform: translate(0%, 110%) perspective(520px)
+        rotateX(0deg) rotateY(0deg);
       opacity: 0;
     }
     30% {
@@ -33,8 +32,8 @@ export const Container = styled.div`
     }
     100% {
       --rotate: 90deg;
-      transform: translate(-0%, 0%) perspective(1020px) rotateX(180deg)
-        rotateY(180deg);
+      transform: translate(-0%, 0%) perspective(1020px)
+        rotateX(180deg) rotateY(180deg);
       opacity: 0;
     } /* 
     100% {
@@ -60,7 +59,8 @@ export const Container = styled.div`
       15% 85%,
       0% 85%
     );
-    transform: perspective(520px) rotateX(var(--rotate)) rotateY(var(--rotate));
+    transform: perspective(520px) rotateX(var(--rotate))
+      rotateY(var(--rotate));
     animation: rotate1 4.5s ease-in-out infinite;
 
     @supports (-webkit-touch-callout: none) {
@@ -190,7 +190,8 @@ export const Container = styled.div`
   }
 
   .laptop ul {
-    animation: laptop 10s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+    animation: laptop 10s cubic-bezier(0.25, 0.1, 0.25, 1)
+      infinite;
     animation-delay: 1.25s;
     opacity: 0.5;
   }

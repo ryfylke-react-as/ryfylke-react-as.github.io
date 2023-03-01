@@ -77,6 +77,7 @@ export const LogoContainer = styled.div`
   animation: ${headerBg} 0.6s ease-in-out;
   width: 100%;
   max-width: 900px;
+  justify-content: center;
   h1 {
     font-size: clamp(3rem, 8.5vmin, 6.5rem);
     animation: ${titleAnim} 0.2s ease-out;
@@ -85,9 +86,6 @@ export const LogoContainer = styled.div`
       animation-fill-mode: both;
       transition: color 0.3s ease-in-out;
     }
-  }
-  &:hover img {
-    transform: scale(1.05) rotate(-3deg);
   }
   img {
     width: clamp(35px, 6.5vmin, 12rem);

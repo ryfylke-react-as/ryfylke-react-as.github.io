@@ -6,4 +6,5 @@ export type SectionProps = {
   style?: CSSProperties;
   children?: ReactNode;
   className?: string;
+  id?: string;
 };
