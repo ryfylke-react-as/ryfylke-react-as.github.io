@@ -1,0 +1,1526 @@
+<!doctype html>
+<html lang="nn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>
+      Mindre papirarbeid. Meir tid til det som tel - Ryfylke
+      React
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="./media/icon.svg"
+    />
+    <style>
+      :root {
+        --bg: #16211a;
+        --surface: #1e2c22;
+        --surface-2: #233427;
+        --surface-3: #1e2c2284;
+        --text: #f1ecde;
+        --text-muted: #a9b0a0;
+        --accent: #c1543c;
+        --accent-soft: #3a2723;
+        --river: #7e9c92;
+        --border: #33453a;
+        --display: "Archivo", sans-serif;
+        --body: "Source Serif 4", serif;
+        --mono: "IBM Plex Mono", monospace;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--body);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      img,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        color: inherit;
+      }
+      .wrap {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 0 28px;
+      }
+
+      header.site {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(22, 33, 26, 0.92);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--border);
+      }
+      header.site .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+      }
+      .logo {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: 16px;
+        letter-spacing: 0.02em;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .logo span {
+        color: var(--river);
+      }
+      .logo-mark {
+        width: 26px;
+        height: 26px;
+        border-radius: 7px;
+        flex-shrink: 0;
+      }
+      nav.main {
+        display: flex;
+        gap: 28px;
+        font-family: var(--mono);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      nav.main a {
+        text-decoration: none;
+        color: var(--text-muted);
+        transition: color 0.15s;
+      }
+      nav.main a:hover {
+        color: var(--text);
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: 14px;
+        padding: 12px 22px;
+        border-radius: 2px;
+        text-decoration: none;
+        border: 1px solid transparent;
+        cursor: pointer;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #fbefea;
+      }
+      .btn-primary:hover {
+        background: #a8462f;
+      }
+      .btn-ghost {
+        border-color: var(--border);
+        color: var(--text);
+      }
+      .btn-ghost:hover {
+        border-color: var(--river);
+      }
+
+      /* HERO */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 96px 0 88px;
+        border-bottom: 1px solid var(--border);
+      }
+      .hero-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+      .hero-tint {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(22, 33, 26, 0.88) 0%,
+            rgba(22, 33, 26, 0.78) 55%,
+            var(--bg) 100%
+          ),
+          linear-gradient(
+            90deg,
+            rgba(22, 33, 26, 0.55) 0%,
+            rgba(22, 33, 26, 0.2) 100%
+          );
+      }
+      .hero .river-line {
+        position: absolute;
+        right: -60px;
+        top: 0;
+        height: 100%;
+        width: 520px;
+        opacity: 0.5;
+        pointer-events: none;
+        z-index: 2;
+      }
+      .hero .wrap {
+        position: relative;
+        z-index: 3;
+      }
+      .eyebrow {
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--river);
+        margin-bottom: 22px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .eyebrow::before {
+        content: "";
+        width: 22px;
+        height: 1px;
+        background: var(--river);
+      }
+      h1 {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(34px, 5.2vw, 58px);
+        line-height: 1.06;
+        letter-spacing: -0.01em;
+        max-width: 820px;
+        margin-bottom: 26px;
+      }
+      h1 em {
+        font-style: normal;
+        color: var(--accent);
+      }
+      .lede {
+        font-family: var(--body);
+        font-size: 20px;
+        color: var(--text-muted);
+        max-width: 560px;
+        margin-bottom: 38px;
+        font-weight: 400;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      /* PROBLEM / PULL */
+      .pull {
+        padding: 80px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .pull .wrap {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 60px;
+        align-items: start;
+      }
+      .pull h2 {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: 2.875rem;
+        line-height: 1.3;
+        max-width: 360px;
+      }
+      .pull p {
+        font-size: 17px;
+        color: var(--text-muted);
+        max-width: 480px;
+        margin-bottom: 16px;
+      }
+      .pull p strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      /* SERVICES */
+      section.services {
+        padding: 88px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 44px;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .section-head h2 {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: 28px;
+      }
+      .section-head p {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .service-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+      }
+      .service-card {
+        background: var(--bg);
+        padding: 32px;
+        min-height: 190px;
+        display: flex;
+        will-change: transform;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: transform 0.1s ease-out;
+      }
+      .service-card .num {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--river);
+      }
+      .card-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+      }
+      .service-icon {
+        width: 34px;
+        height: 34px;
+        overflow: visible;
+        opacity: 0.1;
+        transition: all 0.2s ease-out;
+        scale: 0.9;
+      }
+      .service-card:hover .service-icon {
+        opacity: 0.5;
+        scale: 1;
+      }
+      .service-icon .stroke {
+        fill: none;
+        stroke: var(--river);
+        stroke-width: 1.4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      /* 01 — website: blinking text cursor */
+      .icon-web .cursor {
+        fill: var(--accent);
+        animation: blink 1.6s steps(1) infinite;
+      }
+      @keyframes blink {
+        0%,
+        45% {
+          opacity: 1;
+        }
+        50%,
+        100% {
+          opacity: 0;
+        }
+      }
+      /* 02 — automation: slow continuous rotation */
+      .icon-auto .loop {
+        transform-origin: 17px 17px;
+        animation: spin 5s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      /* 03 — video: recording dot pulse */
+      .icon-video .rec {
+        fill: var(--accent);
+        animation: pulse 2.2s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.35;
+          transform: scale(0.75);
+        }
+      }
+      /* 04 — support: expanding ping ring */
+      .icon-support .ring {
+        fill: none;
+        stroke: var(--river);
+        stroke-width: 1.2;
+        transform-origin: 17px 17px;
+        animation: ping 2.6s ease-out infinite;
+      }
+      @keyframes ping {
+        0% {
+          transform: scale(0.6);
+          opacity: 0.9;
+        }
+        100% {
+          transform: scale(1.5);
+          opacity: 0;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .icon-web .cursor,
+        .icon-auto .loop,
+        .icon-video .rec,
+        .icon-support .ring {
+          animation: none;
+        }
+      }
+      .service-card h3 {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: 19px;
+        margin: 18px 0 10px;
+      }
+      .service-card p {
+        font-size: 15px;
+        color: var(--text-muted);
+      }
+
+      /* TRUST */
+      section.trust {
+        padding: 88px 0;
+        border-bottom: 1px solid var(--border);
+        background: var(--surface);
+        position: relative;
+        overflow: hidden;
+      }
+      section.trust .hakonimg {
+        position: absolute;
+
+        right: 50%;
+        transform: translateX(60%);
+        bottom: 22%;
+        height: 70%;
+        opacity: 1;
+        user-select: none;
+        z-index: 1;
+        transition: all 0.3s ease-out;
+        filter: drop-shadow(0 0 0.75rem var(--bg));
+        -webkit-mask-image: radial-gradient(
+          circle,
+          #000 70%,
+          transparent 71%
+        );
+        mask-image: radial-gradient(
+          circle,
+          #000 70%,
+          transparent 71%
+        );
+
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+      }
+      section.trust .hakonimg:hover {
+        opacity: 1;
+      }
+      @media (max-width: 1200px) {
+        section.trust .hakonimg {
+          opacity: 0 !important;
+        }
+      }
+      @media (max-width: 750px) {
+        section.trust .hakonimg {
+          opacity: 0.3 !important;
+          bottom: 20% !important;
+          height: 70%;
+          right: -20% !important;
+          transform: translateX(0%) !important;
+        }
+        .cred-list {
+          background: var(--surface) !important;
+          width: calc(100% + 2rem);
+          padding-right: 2rem;
+        }
+      }
+      section.trust .wrap {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 60px;
+        position: relative;
+        z-index: 2;
+      }
+      section.trust h2 {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: 26px;
+        margin-bottom: 20px;
+        max-width: 420px;
+      }
+      section.trust p {
+        color: var(--text-muted);
+        font-size: 16px;
+        margin-bottom: 16px;
+        max-width: 480px;
+        background: var(--surface-3);
+        backdrop-filter: blur(5px);
+      }
+      @media (max-width: 1000px) {
+        section.trust p {
+          backdrop-filter: blur(0px);
+          background: transparent;
+        }
+      }
+      .cred-list {
+        border-top: 1px solid var(--border);
+        background: var(--surface-3);
+        backdrop-filter: blur(5px);
+        padding-inline: 1rem;
+      }
+      .cred-item {
+        padding: 18px 0;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .cred-item .label {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        padding-top: 2px;
+      }
+      .cred-item .val {
+        font-family: var(--body);
+        font-size: 16px;
+        text-align: right;
+      }
+
+      /* PROCESS */
+      section.process {
+        padding: 88px 0;
+        border-bottom: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .porten-bg {
+        position: absolute;
+        z-index: 0;
+        inset: 0;
+        width: 100%;
+        filter: blur(15px);
+        opacity: 0.05;
+        object-fit: cover;
+        pointer-events: none;
+      }
+      .steps {
+        position: relative;
+        margin-top: 50px;
+      }
+      .steps::before {
+        content: "";
+        position: absolute;
+        left: 19px;
+        top: 6px;
+        bottom: 6px;
+        width: 1px;
+        background: linear-gradient(var(--river), var(--border));
+      }
+      .step {
+        display: grid;
+        grid-template-columns: 40px 1fr;
+        gap: 24px;
+        padding-bottom: 44px;
+        position: relative;
+      }
+      .step:last-child {
+        padding-bottom: 0;
+      }
+      .step .dot {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--surface-2);
+        border: 1px solid var(--river);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--river);
+        z-index: 1;
+      }
+      .step h3 {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+      .step p {
+        color: var(--text-muted);
+        font-size: 15px;
+        max-width: 520px;
+      }
+
+      /* PRICING */
+      section.pricing {
+        padding: 88px 0;
+        border-bottom: 1px solid var(--border);
+        background: var(--surface);
+      }
+      .price-box {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+        margin-top: 40px;
+      }
+      .price-cell {
+        background: var(--bg);
+        padding: 36px;
+        transition: background 0.3s ease-out;
+        &:hover {
+          background: #000;
+        }
+      }
+      .price-cell .tag {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--river);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .price-cell .amount {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: 34px;
+        margin: 14px 0 10px;
+      }
+      .price-cell .amount span {
+        font-family: var(--mono);
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--text-muted);
+      }
+      .price-cell p {
+        color: var(--text-muted);
+        font-size: 15px;
+      }
+
+      /* CONTACT / FOOTER */
+      footer.contact {
+        padding: 96px 0 60px;
+      }
+      footer.contact .wrap {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 60px;
+        align-items: end;
+      }
+      footer.contact h2 {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(28px, 4vw, 42px);
+        max-width: 480px;
+        margin-bottom: 20px;
+      }
+      footer.contact .lede {
+        margin-bottom: 30px;
+      }
+      .contact-card {
+        border: 1px solid var(--border);
+        padding: 28px;
+        background: var(--surface);
+      }
+      .contact-card .row {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 15px;
+      }
+      .contact-card .row:last-child {
+        border-bottom: none;
+      }
+      .contact-card .row .k {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .foot-bottom {
+        margin-top: 70px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--text-muted);
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .foot-brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      @media (max-width: 760px) {
+        .pull .wrap,
+        section.trust .wrap,
+        .price-box,
+        footer.contact .wrap {
+          grid-template-columns: 1fr;
+        }
+        .service-grid {
+          grid-template-columns: 1fr;
+        }
+        nav.main {
+          display: none;
+        }
+        .hero {
+          padding: 64px 0 56px;
+        }
+        section.services,
+        section.trust,
+        section.process,
+        section.pricing {
+          padding: 64px 0;
+        }
+      }
+
+      .company-marquee {
+        max-width: 480px;
+        overflow: hidden;
+
+        /* Fade at the edges */
+        mask-image: linear-gradient(
+          to right,
+          transparent,
+          black 10%,
+          black 90%,
+          transparent
+        );
+        -webkit-mask-image: linear-gradient(
+          to right,
+          transparent,
+          black 10%,
+          black 90%,
+          transparent
+        );
+      }
+
+      .company-track {
+        display: flex;
+        width: max-content;
+        align-items: center;
+        animation: marquee 58s linear infinite;
+      }
+
+      .company-track span {
+        flex-shrink: 0;
+        margin-right: 7rem;
+
+        font-size: 0.875rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        white-space: nowrap;
+
+        color: rgba(255, 255, 255, 0.25);
+
+        transition: color 0.2s ease;
+        &::selection {
+          background-color: rgba(0, 0, 0, 0.3);
+        }
+      }
+
+      .company-track span:hover {
+        color: rgba(255, 255, 255, 0.75);
+      }
+
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      .topo-visual {
+        width: 420px;
+        height: 420px;
+        position: relative;
+        opacity: 0.8;
+        margin-block: auto;
+        transform: translateY(25px) translateX(15%);
+      }
+
+      .topo-map {
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+        mask-image: radial-gradient(
+          circle,
+          black 40%,
+          transparent 75%
+        );
+      }
+
+      .contours {
+        animation: drift 18s infinite ease-in-out;
+        opacity: 0.8;
+      }
+
+      .contours path {
+        fill: none;
+        stroke: rgba(190, 220, 190, 0.18);
+        stroke-width: 1.2;
+        vector-effect: non-scaling-stroke;
+      }
+
+      .location-pulse {
+        fill: #c05d3e;
+        filter: drop-shadow(0 0 12px rgba(192, 93, 62, 0.8));
+        transition: filter 0.3s ease;
+      }
+      .topo-visual:hover .location-pulse {
+        filter: drop-shadow(0 0 20px rgba(192, 93, 62, 0.9));
+      }
+
+      .location-ring {
+        fill: none;
+        stroke: rgba(192, 93, 62, 0.35);
+        stroke-width: 1;
+        transform-origin: 310px 230px;
+        animation: pulse 4s infinite ease-out;
+      }
+      .location-halo {
+        fill: rgba(192, 93, 62, 0.15);
+      }
+
+      .ring-two {
+        animation-delay: 2s;
+      }
+
+      @keyframes drift {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+
+        50% {
+          transform: translate(-12px, 8px);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(0.5);
+          opacity: 0.8;
+        }
+
+        100% {
+          transform: scale(3);
+          opacity: 0;
+        }
+      }
+
+      .steps-container {
+        display: flex;
+        justify-content: space-between;
+      }
+      @media (max-width: 800px) {
+        .steps-container {
+          position: relative;
+        }
+        .topo-visual {
+          position: absolute;
+          right: 0;
+          opacity: 0.3;
+          filter: blur(0.4px);
+        }
+      }
+      .topo-map {
+        filter: blur(0.4px);
+        opacity: 0.6;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap">
+        <div class="logo">
+          <img
+            src="./media/icon.svg"
+            alt="Ryfylke React AS"
+            class="logo-mark"
+          />
+          Ryfylke React <span>/ Suldal</span>
+        </div>
+        <nav class="main">
+          <a href="#tenester">Tenester</a>
+          <a href="#slik">Slik fungerer det</a>
+          <a href="#prisar">Prisar</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+        <!-- <a href="#kontakt" class="btn btn-primary">Ta kontakt</a> -->
+      </div>
+    </header>
+
+    <section class="hero">
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="media/hero-bg-poster.jpg"
+      >
+        <source src="media/hero-bg.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-tint"></div>
+      <svg
+        class="river-line"
+        viewBox="0 0 500 700"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path
+          d="M 420 -20 C 380 60, 460 120, 400 200 C 340 280, 420 340, 380 420 C 340 500, 400 560, 360 660 C 340 700, 330 720, 300 760"
+          fill="none"
+          stroke="#7E9C92"
+          stroke-width="1.2"
+        />
+        <path
+          d="M 470 -20 C 430 70, 500 130, 450 220 C 400 300, 470 360, 430 450 C 400 520, 450 580, 410 680"
+          fill="none"
+          stroke="#33453A"
+          stroke-width="1"
+        />
+      </svg>
+      <div class="wrap">
+        <div class="eyebrow">Sand, Suldal — sidan 2021</div>
+        <h1>
+          Mindre papirarbeid.<br />Meir tid til
+          <em>det som tel.</em>
+        </h1>
+        <p class="lede">
+          Eg byggjer nettsider og automatiserer kvardagen for
+          bedrifter i Suldal — frå hytteutleigarar og fiskeguidar
+          til handverkarar og gardsutsal. Same kompetanse som har
+          levert for Telenor, no retta mot næringslivet her
+          heime.
+        </p>
+        <div class="hero-actions">
+          <a href="#kontakt" class="btn btn-primary"
+            >Bestill ein uforpliktande prat</a
+          >
+          <a href="#tenester" class="btn btn-ghost"
+            >Sjå tenestene</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="pull">
+      <div class="wrap">
+        <h2>
+          Du driv bedrifta. Du skal ikkje òg måtte drive
+          IT-avdelinga.
+        </h2>
+        <div>
+          <p>
+            Dobbeltbooka hytte fordi kalendrane ikkje snakkar
+            saman. Opningstider som er rette éin stad og feil tre
+            andre. Fakturaer som vert sende for seint fordi dagen
+            vart for full.
+            <strong
+              >Dette er ikkje spesielt store problem kvar for seg
+              — men dei stel tid frå ei bedrift som ofte berre er
+              éin person.</strong
+            >
+          </p>
+          <p>
+            Eg hjelper deg å setja opp system som gjer dei
+            kjedelege, gjentakande oppgåvene automatisk — slik at
+            dei ikkje lenger krev at du hugsar på dei.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="tenester">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Tenester</h2>
+          <p>Vel det som løyser mest akkurat no</p>
+        </div>
+        <div class="service-grid">
+          <div class="service-card">
+            <div class="card-top">
+              <div class="num">01</div>
+              <svg
+                class="service-icon icon-web"
+                viewBox="0 0 34 34"
+                aria-hidden="true"
+              >
+                <rect
+                  class="stroke"
+                  x="3"
+                  y="6"
+                  width="28"
+                  height="22"
+                  rx="2"
+                />
+                <line
+                  class="stroke"
+                  x1="3"
+                  y1="12"
+                  x2="31"
+                  y2="12"
+                />
+                <circle
+                  class="stroke"
+                  cx="7"
+                  cy="9"
+                  r="0.9"
+                  fill="var(--river)"
+                  stroke="none"
+                />
+                <line
+                  class="stroke"
+                  x1="8"
+                  y1="19"
+                  x2="20"
+                  y2="19"
+                />
+                <rect
+                  class="cursor"
+                  x="21"
+                  y="16.5"
+                  width="2"
+                  height="5"
+                  rx="0.5"
+                />
+              </svg>
+            </div>
+            <div>
+              <h3>Nettside og nettbutikk</h3>
+              <p>
+                Ny eller oppgradert nettside, bookingløysing
+                eller enkel nettbutikk — tilpassa mobil og kopla
+                til Google Business.
+              </p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="card-top">
+              <div class="num">02</div>
+              <svg
+                class="service-icon icon-auto"
+                viewBox="0 0 34 34"
+                aria-hidden="true"
+              >
+                <g class="loop">
+                  <path
+                    class="stroke"
+                    d="M25 17a8 8 0 1 1-2.3-5.6"
+                  />
+                  <path class="stroke" d="M25 8v5h-5" />
+                </g>
+              </svg>
+            </div>
+            <div>
+              <h3>Automatisering</h3>
+              <p>
+                Booking, fakturering, påminningar og oppfølging
+                av kundar — sett opp éin gong, køyrer sjølv etter
+                det.
+              </p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="card-top">
+              <div class="num">03</div>
+              <svg
+                class="service-icon icon-video"
+                viewBox="0 0 34 34"
+                aria-hidden="true"
+              >
+                <rect
+                  class="stroke"
+                  x="3"
+                  y="10"
+                  width="20"
+                  height="15"
+                  rx="2"
+                />
+                <path class="stroke" d="M23 15l8-4v13l-8-4z" />
+                <circle
+                  class="stroke"
+                  cx="13"
+                  cy="17.5"
+                  r="4.5"
+                />
+                <circle class="rec" cx="27" cy="8" r="2.4" />
+              </svg>
+            </div>
+            <div>
+              <h3>Video og foto</h3>
+              <p>
+                Innhald til nettside og sosiale medium — frå
+                produktbilete til presentasjonsfilm, redigert og
+                klart til bruk.
+              </p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="card-top">
+              <div class="num">04</div>
+              <svg
+                class="service-icon icon-support"
+                viewBox="0 0 34 34"
+                aria-hidden="true"
+              >
+                <circle class="ring" cx="17" cy="17" r="9" />
+                <path
+                  class="stroke"
+                  d="M9 18v-2a8 8 0 0 1 16 0v2"
+                />
+                <rect
+                  class="stroke"
+                  x="6.5"
+                  y="17"
+                  width="4"
+                  height="7"
+                  rx="1.5"
+                />
+                <rect
+                  class="stroke"
+                  x="23.5"
+                  y="17"
+                  width="4"
+                  height="7"
+                  rx="1.5"
+                />
+                <path
+                  class="stroke"
+                  d="M27.5 24v1a3 3 0 0 1-3 3h-3"
+                />
+              </svg>
+            </div>
+            <div>
+              <h3>Fast IT-støtte</h3>
+              <p>
+                Nokon å ringje når noko gjer seg vrangt —
+                fastavtale med prioritert respons, ikkje
+                timeprisa panikk.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust">
+      <div class="wrap">
+        <div>
+          <h2>
+            Bygd på erfaring frå store aktørar. Retta mot
+            bedrifter her heime.
+          </h2>
+          <p>
+            Dei siste åra har eg jobba som frontend-utviklar for
+            aktørar som Telenor — same standard for kvalitet og
+            pålitelegheit ligg til grunn uansett storleik på
+            oppdraget.
+          </p>
+          <p>
+            Forskjellen er at du får éin person, ikkje eit byrå:
+            du snakkar alltid med den som faktisk byggjer
+            løysinga, og du treng ikkje forklare kva Suldalslågen
+            eller sesongsvingingar betyr for bedrifta di.
+          </p>
+          <div class="company-marquee">
+            <div class="company-track">
+              <span>NDLA</span>
+              <span>Equinor</span>
+              <span>Neddi</span>
+              <span>Telenor Cybersecurity</span>
+              <span>LIGL AS</span>
+              <span>Koding.no</span>
+              <span>Newbringer</span>
+              <span>Buildr Labs</span>
+              <span>NDLA</span>
+              <span>Equinor</span>
+              <span>Neddi</span>
+              <span>Telenor Cybersecurity</span>
+              <span>LIGL AS</span>
+              <span>Koding.no</span>
+              <span>Newbringer</span>
+              <span>Buildr Labs</span>
+            </div>
+          </div>
+        </div>
+        <div class="cred-list">
+          <div class="cred-item">
+            <span class="label">Bakgrunn</span
+            ><span class="val">Frontend-utvikling, design.</span>
+          </div>
+          <div class="cred-item">
+            <span class="label">Base</span
+            ><span class="val">Sand, Suldal</span>
+          </div>
+          <div class="cred-item">
+            <span class="label">Verktøy</span
+            ><span class="val"
+              >Nettside, automatisering, audio/video</span
+            >
+          </div>
+          <div class="cred-item">
+            <span class="label">Første prat</span
+            ><span class="val">Gratis, 30 min</span>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./media/profil-removebg-preview.png"
+        class="hakonimg"
+        alt="Håkon Underbakke profil"
+      />
+    </section>
+
+    <section class="process" id="slik">
+      <img
+        src="./media/porten.jpg"
+        alt="Suldalsporten"
+        class="porten-bg"
+      />
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Slik fungerer det</h2>
+          <p>Frå prat til ferdig løysing</p>
+        </div>
+        <div class="steps-container">
+          <div class="steps">
+            <div class="step">
+              <div class="dot">01</div>
+              <div>
+                <h3>Uforpliktande prat</h3>
+                <p>
+                  30 minutt, gjerne hjå deg. Me ser på kva som
+                  faktisk stel mest tid i kvardagen.
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="dot">02</div>
+              <div>
+                <h3>Forslag og fast pris</h3>
+                <p>
+                  Du får eit konkret forslag med fast pris før
+                  noko vert sett i gang — ingen overraskingar på
+                  fakturaen.
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="dot">03</div>
+              <div>
+                <h3>Me byggjer det saman</h3>
+                <p>
+                  Eg set opp løysinga, viser deg korleis ho
+                  fungerer, og justerer til ho faktisk passar
+                  kvardagen din.
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="dot">04</div>
+              <div>
+                <h3>Løpande støtte</h3>
+                <p>
+                  Treng du meir hjelp seinare, er eg her — anten
+                  som enkeltoppdrag eller fast avtale.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="topo-visual">
+            <svg viewBox="0 0 500 500" class="topo-map">
+              <g class="contours">
+                <path
+                  d="M20 350 C120 280,180 330,260 260 S400 180,500 230"
+                />
+                <path
+                  d="M0 390 C100 320,190 370,280 290 S420 210,520 260"
+                />
+                <path
+                  d="M20 430 C140 360,220 410,320 330 S430 260,510 300"
+                />
+                <path
+                  d="M40 300 C130 220,220 270,300 200 S420 140,490 180"
+                />
+                <path
+                  d="M80 240 C170 170,240 220,340 150 S440 100,500 140"
+                />
+                <path
+                  d="M130 190 C220 120,300 170,380 110 S450 80,510 100"
+                />
+              </g>
+
+              <g class="location-marker">
+                <circle
+                  class="location-ring ring-one"
+                  cx="310"
+                  cy="230"
+                  r="20"
+                />
+                <circle
+                  class="location-ring ring-two"
+                  cx="310"
+                  cy="230"
+                  r="20"
+                />
+
+                <circle
+                  class="location-halo"
+                  cx="310"
+                  cy="230"
+                  r="12"
+                />
+                <circle
+                  class="location-pulse"
+                  cx="310"
+                  cy="230"
+                  r="5"
+                />
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing" id="prisar">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Prisar</h2>
+          <p>Faste pakkar eller fastavtale</p>
+        </div>
+        <div class="price-box">
+          <div class="price-cell">
+            <div class="tag">Prosjekt</div>
+            <div class="amount">frå 5 000 kr</div>
+            <p>
+              Faste pakkar for nettside, automatisering, digital
+              synlegheit eller video — pris avtalt før oppstart.
+            </p>
+          </div>
+          <div class="price-cell">
+            <div class="tag">Fastavtale</div>
+            <div class="amount">
+              frå 1 500 kr <span>/ mnd</span>
+            </div>
+            <p>
+              Løpande support og vedlikehald, slik at systema
+              dine held fram å fungere utan at du treng tenkje på
+              det.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="contact" id="kontakt">
+      <div class="wrap">
+        <div>
+          <h2>
+            Klar for å bruke mindre tid på det som stel dagen
+            din?
+          </h2>
+          <p class="lede">
+            Ta kontakt for ein uforpliktande prat — ingen
+            forpliktingar, berre ei vurdering av kva som kan
+            gjere kvardagen enklare.
+          </p>
+          <a
+            href="mailto:hakon@ryfylke.dev?subject=Kontaktskjema Ryfylke React"
+            class="btn btn-primary"
+            >Send e-post</a
+          >
+        </div>
+        <div class="contact-card">
+          <div class="row">
+            <span class="k">Namn</span
+            ><span>Håkon Svennes Underbakke</span>
+          </div>
+          <div class="row">
+            <span class="k">Telefon</span
+            ><span><a href="tel:98494271">984 94 271</a></span>
+          </div>
+          <div class="row">
+            <span class="k">E-post</span
+            ><span
+              ><a href="mailto:hakon@ryfylke.dev"
+                >hakon@ryfylke.dev</a
+              ></span
+            >
+          </div>
+          <div class="row">
+            <span class="k">Stad</span
+            ><span>Trollhammaren (Sand, Suldal)</span>
+          </div>
+        </div>
+      </div>
+      <div class="wrap foot-bottom">
+        <span class="foot-brand"
+          ><img
+            src="./media/icon.svg"
+            alt=""
+            class="logo-mark"
+            style="width: 16px; height: 16px; border-radius: 4px"
+          />© <span class="year-now">2026</span> Ryfylke React
+          AS</span
+        >
+        <span
+          >Org.nr. 926446967 (<a
+            href="https://virksomhet.brreg.no/nb/oppslag/enheter/926446967"
+            >brreg</a
+          >)</span
+        >
+      </div>
+    </footer>
+  </body>
+  <script>
+    (function setCurrentYear() {
+      const ynEl = document.querySelector(".year-now");
+      if (ynEl) {
+        ynEl.innerHTML = new Date().getFullYear().toString();
+      }
+    })();
+    (function tiltCards() {
+      document
+        .querySelectorAll(".service-card")
+        .forEach((card) => {
+          const maxTilt = 1;
+
+          card.addEventListener("mousemove", (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const rotateY =
+              ((x - rect.width / 2) / (rect.width / 2)) *
+              maxTilt;
+            const rotateX =
+              -((y - rect.height / 2) / (rect.height / 2)) *
+              maxTilt;
+
+            card.style.transform = `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+          });
+
+          card.addEventListener("mouseleave", () => {
+            card.style.transform =
+              "perspective(700px) rotateX(0deg) rotateY(0deg)";
+          });
+        });
+    })();
+
+    (function dotAnim() {
+      const topo = document.querySelector(".topo-visual");
+      const marker = document.querySelector(".location-marker");
+      const contours = document.querySelector(".contours");
+
+      const origin = {
+        x: 310,
+        y: 230,
+      };
+
+      let target = {
+        x: 0,
+        y: 0,
+      };
+
+      let current = {
+        x: 0,
+        y: 0,
+      };
+
+      topo.addEventListener("mousemove", (e) => {
+        const rect = topo.getBoundingClientRect();
+
+        const mouseX =
+          ((e.clientX - rect.left) / rect.width) * 500;
+        const mouseY =
+          ((e.clientY - rect.top) / rect.height) * 500;
+
+        const strength = 0.18;
+
+        target.x = (mouseX - origin.x) * strength;
+        target.y = (mouseY - origin.y) * strength;
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+        contours.style.transform = `translate(${x * -8}px, ${y * -8}px) !important`;
+      });
+
+      topo.addEventListener("mouseleave", () => {
+        target.x = 0;
+        target.y = 0;
+        contours.style.transform = "";
+      });
+
+      function animateMarker() {
+        current.x += (target.x - current.x) * 0.08;
+        current.y += (target.y - current.y) * 0.08;
+
+        marker.setAttribute(
+          "transform",
+          `translate(${current.x}, ${current.y})`,
+        );
+
+        requestAnimationFrame(animateMarker);
+      }
+
+      animateMarker();
+    })();
+  </script>
+</html>
