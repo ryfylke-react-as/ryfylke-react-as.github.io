@@ -595,50 +595,161 @@
         max-width: 520px;
       }
 
-      /* PRICING */
-      section.pricing {
+      /* CUSTOMER PORTAL */
+      section.portal {
         padding: 88px 0;
         border-bottom: 1px solid var(--border);
         background: var(--surface);
       }
-      .price-box {
+      .portal-intro {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1px;
-        background: var(--border);
-        border: 1px solid var(--border);
-        margin-top: 40px;
+        grid-template-columns: minmax(0, 0.9fr) minmax(
+            300px,
+            1.1fr
+          );
+        align-items: end;
+        gap: 48px;
       }
-      .price-cell {
-        background: var(--bg);
-        padding: 36px;
-        transition: background 0.3s ease-out;
-        &:hover {
-          background: #000;
-        }
+      .portal-intro .section-head {
+        margin-bottom: 0;
       }
-      .price-cell .tag {
-        font-family: var(--mono);
-        font-size: 12px;
-        color: var(--river);
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-      }
-      .price-cell .amount {
-        font-family: var(--display);
-        font-weight: 700;
-        font-size: 34px;
-        margin: 14px 0 10px;
-      }
-      .price-cell .amount span {
-        font-family: var(--mono);
-        font-size: 14px;
-        font-weight: 400;
+      .portal-lede {
         color: var(--text-muted);
+        font-size: 17px;
+        max-width: 520px;
       }
-      .price-cell p {
+      .portal-stage {
+        display: grid;
+        grid-template-columns: minmax(220px, 0.42fr) minmax(
+            0,
+            1fr
+          );
+        align-items: center;
+        gap: clamp(34px, 5vw, 64px);
+        margin-top: 46px;
+      }
+      .portal-side {
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .portal-tabs {
+        display: grid;
+        gap: 8px;
+        margin-bottom: 30px;
+      }
+      .portal-tab {
+        appearance: none;
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--text-muted);
+        padding: 10px 15px;
+        font-family: var(--mono);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        cursor: pointer;
+        transition:
+          color 0.2s,
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .portal-tab:hover,
+      .portal-tab:focus-visible {
+        color: var(--text);
+        border-color: var(--river);
+        outline: none;
+      }
+      .portal-tab[aria-selected="true"] {
+        color: var(--text);
+        background: var(--surface-2);
+        border-color: var(--river);
+      }
+      .portal-frame {
+        position: relative;
+        border: 1px solid #405448;
+        border-radius: 12px;
+        background: #0d1510;
+        padding: 34px 10px 10px;
+        box-shadow: 0 30px 70px rgba(4, 9, 6, 0.32);
+        overflow: hidden;
+      }
+      .portal-frame::before {
+        content: "";
+        position: absolute;
+        top: 15px;
+        left: 18px;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow:
+          14px 0 #b78c54,
+          28px 0 var(--river);
+      }
+      .portal-frame::after {
+        content: "portal.ryfylke.dev";
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: var(--mono);
+        font-size: 9px;
+        letter-spacing: 0.04em;
+        color: var(--text-muted);
+        opacity: 0.7;
+      }
+      .portal-screen {
+        position: relative;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        border-radius: 0px;
+        background: #eef0ec;
+      }
+      .portal-slide {
+        position: absolute;
+        inset: 0;
+        --indent: 2px;
+        top: calc(var(--indent) * -1);
+        bottom: calc(var(--indent) * -1);
+        width: 100%;
+        height: calc(100% + calc(var(--indent) * 2));
+        object-fit: cover;
+        opacity: 0;
+        transform: scale(1.018);
+        transition:
+          opacity 0.55s ease,
+          transform 0.8s ease;
+        object-position: top center;
+      }
+      .portal-slide.is-active {
+        opacity: 1;
+        transform: scale(1);
+      }
+      .portal-caption {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: start;
+        gap: 24px;
+        padding-top: 30px;
+        border-top: 1px solid var(--border);
+        min-height: 216px;
+      }
+      .portal-copy h3 {
+        font-family: var(--display);
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+      .portal-copy p {
         color: var(--text-muted);
         font-size: 15px;
+        max-width: 650px;
+      }
+      .portal-count {
+        color: var(--river);
+        font-family: var(--mono);
+        font-size: 12px;
       }
 
       /* CONTACT / FOOTER */
@@ -704,7 +815,7 @@
       @media (max-width: 760px) {
         .pull .wrap,
         section.trust .wrap,
-        .price-box,
+        .portal-intro,
         footer.contact .wrap {
           grid-template-columns: 1fr;
         }
@@ -720,8 +831,56 @@
         section.services,
         section.trust,
         section.process,
-        section.pricing {
+        section.portal {
           padding: 64px 0;
+        }
+        .portal-intro {
+          gap: 18px;
+        }
+        .portal-stage {
+          grid-template-columns: 1fr;
+          grid-template-areas: "tabs" "frame" "caption";
+          gap: 0;
+        }
+        .portal-side {
+          display: contents;
+        }
+        .portal-tabs {
+          grid-area: tabs;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 4px;
+          margin-bottom: 14px;
+        }
+        .portal-tab {
+          flex: 1 1 0;
+          padding: 9px 5px;
+          font-size: 8px;
+        }
+        .portal-frame {
+          grid-area: frame;
+          padding: 27px 6px 6px;
+          border-radius: 8px;
+        }
+        .portal-frame::before {
+          top: 11px;
+          left: 13px;
+          width: 6px;
+          height: 6px;
+        }
+        .portal-frame::after {
+          top: 7px;
+          font-size: 7px;
+        }
+        .portal-caption {
+          grid-area: caption;
+          gap: 8px;
+          padding-top: 20px;
+          border-top: 0;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .portal-slide {
+          transition: none;
         }
       }
 
@@ -898,7 +1057,7 @@
         <nav class="main">
           <a href="#tenester">Tenester</a>
           <a href="#slik">Slik fungerer det</a>
-          <a href="#prisar">Prisar</a>
+          <a href="#kundeportal">Kundeportal</a>
           <a href="#kontakt">Kontakt</a>
         </nav>
         <!-- <a href="#kontakt" class="btn btn-primary">Ta kontakt</a> -->
@@ -943,7 +1102,7 @@
           <em>det som tel.</em>
         </h1>
         <p class="lede">
-          Eg byggjer nettsider og automatiserer kvardagen for
+          Me byggjer nettsider og automatiserer kvardagen for
           bedrifter i Suldal — frå hytteutleigarar og fiskeguidar
           til handverkarar og gardsutsal. Same kompetanse som har
           levert for Telenor, no retta mot næringslivet her
@@ -982,6 +1141,10 @@
             Eg hjelper deg å setja opp system som gjer dei
             kjedelege, gjentakande oppgåvene automatisk — slik at
             dei ikkje lenger krev at du hugsar på dei.
+          </p>
+          <p>
+            Rimeleg, enkelt – og sett opp slik at du eig
+            resultatet.
           </p>
         </div>
       </div>
@@ -1047,7 +1210,7 @@
               <p>
                 Ny eller oppgradert nettside, bookingløysing
                 eller enkel nettbutikk — tilpassa mobil og kopla
-                til Google Business.
+                til dine tenester.
               </p>
             </div>
           </div>
@@ -1069,7 +1232,7 @@
               </svg>
             </div>
             <div>
-              <h3>Automatisering</h3>
+              <h3>Automatisering og verktøy</h3>
               <p>
                 Booking, fakturering, påminningar og oppfølging
                 av kundar — sett opp éin gong, køyrer sjølv etter
@@ -1106,9 +1269,9 @@
             <div>
               <h3>Video og foto</h3>
               <p>
-                Innhald til nettside og sosiale medium — frå
-                produktbilete til presentasjonsfilm, redigert og
-                klart til bruk.
+                Innhald eller automatiserte forslag til nettside
+                og sosiale medium — frå produktbilete til
+                presentasjonsfilm, redigert og klart til bruk.
               </p>
             </div>
           </div>
@@ -1152,7 +1315,8 @@
               <p>
                 Nokon å ringje når noko gjer seg vrangt —
                 fastavtale med prioritert respons, ikkje
-                timeprisa panikk.
+                timeprisa panikk. Me hjelper deg med alt
+                digitalt.
               </p>
             </div>
           </div>
@@ -1246,19 +1410,21 @@
               <div>
                 <h3>Uforpliktande prat</h3>
                 <p>
-                  30 minutt, gjerne hjå deg. Me ser på kva som
-                  faktisk stel mest tid i kvardagen.
+                  30 minutt, gjerne hjå deg. Me finner ut kva som
+                  faktisk stel mest tid i kvardagen, og kva som
+                  går an å automatisera digitalt.
                 </p>
               </div>
             </div>
             <div class="step">
               <div class="dot">02</div>
               <div>
-                <h3>Forslag og fast pris</h3>
+                <h3>Forslag og prisestimat</h3>
                 <p>
-                  Du får eit konkret forslag med fast pris før
-                  noko vert sett i gang — ingen overraskingar på
-                  fakturaen.
+                  Du får eit konkret forslag med pris før noko
+                  vert sett i gang — ingen overraskingar på
+                  fakturaen. Me held oss rimelige og legger fokus
+                  på små bedrifter.
                 </p>
               </div>
             </div>
@@ -1267,9 +1433,10 @@
               <div>
                 <h3>Me byggjer det saman</h3>
                 <p>
-                  Eg set opp løysinga, viser deg korleis ho
+                  Me set opp løysinga, viser deg korleis ho
                   fungerer, og justerer til ho faktisk passar
-                  kvardagen din.
+                  kvardagen din. Løysninga vil være tilgjengelig
+                  i kundeportalen, og snakkar med dine verktøy.
                 </p>
               </div>
             </div>
@@ -1278,8 +1445,10 @@
               <div>
                 <h3>Løpande støtte</h3>
                 <p>
-                  Treng du meir hjelp seinare, er eg her — anten
-                  som enkeltoppdrag eller fast avtale.
+                  Treng du meir hjelp seinare, er me her — anten
+                  som enkeltoppdrag eller fast avtale. Når
+                  kundeforholdet er satt opp, er det trivielt å
+                  lage fleire verktøy og automatiseringar.
                 </p>
               </div>
             </div>
@@ -1340,31 +1509,102 @@
       </div>
     </section>
 
-    <section class="pricing" id="prisar">
+    <section class="portal" id="kundeportal">
       <div class="wrap">
-        <div class="section-head">
-          <h2>Prisar</h2>
-          <p>Faste pakkar eller fastavtale</p>
-        </div>
-        <div class="price-box">
-          <div class="price-cell">
-            <div class="tag">Prosjekt</div>
-            <div class="amount">frå 5 000 kr</div>
-            <p>
-              Faste pakkar for nettside, automatisering, digital
-              synlegheit eller video — pris avtalt før oppstart.
-            </p>
+        <div class="portal-intro">
+          <div class="section-head">
+            <h2>Alt arbeidet, samla på éin stad</h2>
+            <p>Ein kundeportal bygd rundt verksemda di</p>
           </div>
-          <div class="price-cell">
-            <div class="tag">Fastavtale</div>
-            <div class="amount">
-              frå 1 500 kr <span>/ mnd</span>
+          <p class="portal-lede">
+            Snakk med kunnskapsagentar, start automatiserte
+            arbeidsflytar og følg med på aktiviteten — i eit
+            enkelt arbeidsrom som er tilpassa dykk.
+          </p>
+        </div>
+
+        <div class="portal-stage" data-portal-showcase>
+          <div class="portal-side">
+            <div
+              class="portal-tabs"
+              role="tablist"
+              aria-label="Sjå kundeportalen"
+            >
+              <button
+                class="portal-tab"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                aria-controls="portal-screen"
+                data-slide="0"
+              >
+                Oversikt
+              </button>
+              <button
+                class="portal-tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="portal-screen"
+                data-slide="1"
+              >
+                Arbeidsflytar
+              </button>
+              <button
+                class="portal-tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="portal-screen"
+                data-slide="2"
+              >
+                Kunnskapsagent
+              </button>
             </div>
-            <p>
-              Løpande support og vedlikehald, slik at systema
-              dine held fram å fungere utan at du treng tenkje på
-              det.
-            </p>
+
+            <div class="portal-caption" aria-live="polite">
+              <div class="portal-copy">
+                <h3>Full oversikt</h3>
+                <p>
+                  Sjå agentar, verktøy, arbeidsflytar og
+                  aktivitet med det same du loggar inn.
+                </p>
+              </div>
+              <div class="portal-count">
+                <span>01</span> / 03
+              </div>
+            </div>
+          </div>
+
+          <div class="portal-frame">
+            <div
+              class="portal-screen"
+              id="portal-screen"
+              role="tabpanel"
+              tabindex="0"
+            >
+              <img
+                class="portal-slide is-active"
+                src="./media/portal-overview.jpg"
+                alt="Oversikta i Ryfylke React sin kundeportal"
+                data-title="Full oversikt"
+                data-description="Sjå agentar, verktøy, arbeidsflytar og aktivitet med det same du loggar inn."
+              />
+              <img
+                class="portal-slide"
+                src="./media/portal-workflow.jpg"
+                alt="Oppstart av ein automatisert arbeidsflyt i kundeportalen"
+                data-title="Arbeidsflytar på eigne vilkår"
+                data-description="Start og følg automatiserte prosessar sjølv, utan unødvendige steg eller ventetid."
+              />
+              <img
+                class="portal-slide"
+                src="./media/portal-chat.jpg"
+                alt="Samtale med ein kunnskapsagent i kundeportalen"
+                data-title="Kunnskapen dykkar, klar til bruk"
+                data-description="Still spørsmål og få hjelp frå ein agent som tek utgangspunkt i verksemda sine eigne kjelder."
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -1436,6 +1676,81 @@
       if (ynEl) {
         ynEl.innerHTML = new Date().getFullYear().toString();
       }
+    })();
+    (function portalShowcase() {
+      const showcase = document.querySelector(
+        "[data-portal-showcase]",
+      );
+      if (!showcase) return;
+
+      const tabs = [
+        ...showcase.querySelectorAll("[data-slide]"),
+      ];
+      const slides = [
+        ...showcase.querySelectorAll(".portal-slide"),
+      ];
+      const title = showcase.querySelector(".portal-copy h3");
+      const description =
+        showcase.querySelector(".portal-copy p");
+      const count = showcase.querySelector(".portal-count span");
+      const reduceMotion = matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      let active = 0;
+      let timer;
+
+      function showSlide(index, focusTab = false) {
+        active = (index + slides.length) % slides.length;
+        slides.forEach((slide, i) =>
+          slide.classList.toggle("is-active", i === active),
+        );
+        tabs.forEach((tab, i) => {
+          const selected = i === active;
+          tab.setAttribute("aria-selected", selected);
+          tab.tabIndex = selected ? 0 : -1;
+        });
+        title.textContent = slides[active].dataset.title;
+        description.textContent =
+          slides[active].dataset.description;
+        count.textContent = String(active + 1).padStart(2, "0");
+        if (focusTab) tabs[active].focus();
+      }
+
+      function startRotation() {
+        if (reduceMotion) return;
+        clearInterval(timer);
+        timer = setInterval(() => showSlide(active + 1), 5000);
+      }
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => {
+          showSlide(index);
+          startRotation();
+        });
+        tab.addEventListener("keydown", (event) => {
+          if (
+            event.key !== "ArrowLeft" &&
+            event.key !== "ArrowRight"
+          )
+            return;
+          event.preventDefault();
+          showSlide(
+            active + (event.key === "ArrowRight" ? 1 : -1),
+            true,
+          );
+          startRotation();
+        });
+      });
+
+      showcase.addEventListener("mouseenter", () =>
+        clearInterval(timer),
+      );
+      showcase.addEventListener("mouseleave", startRotation);
+      showcase.addEventListener("focusin", () =>
+        clearInterval(timer),
+      );
+      showcase.addEventListener("focusout", startRotation);
+      startRotation();
     })();
     (function tiltCards() {
       document
