@@ -290,128 +290,122 @@
         text-transform: uppercase;
         letter-spacing: 0.08em;
       }
-      .service-grid {
+      .review-card {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1px;
-        background: var(--border);
+        grid-template-columns: minmax(0, 1.15fr) minmax(
+            300px,
+            0.85fr
+          );
         border: 1px solid var(--border);
+        background: var(--surface);
       }
-      .service-card {
-        background: var(--bg);
-        padding: 32px;
-        min-height: 190px;
-        display: flex;
-        will-change: transform;
-        flex-direction: column;
-        justify-content: space-between;
-        transition: transform 0.1s ease-out;
+      .review-main {
+        padding: clamp(34px, 5vw, 58px);
+        border-right: 1px solid var(--border);
       }
-      .service-card .num {
+      .review-kicker {
         font-family: var(--mono);
         font-size: 12px;
         color: var(--river);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 22px;
       }
-      .card-top {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-      }
-      .service-icon {
-        width: 34px;
-        height: 34px;
-        overflow: visible;
-        opacity: 0.1;
-        transition: all 0.2s ease-out;
-        scale: 0.9;
-      }
-      .service-card:hover .service-icon {
-        opacity: 0.5;
-        scale: 1;
-      }
-      .service-icon .stroke {
-        fill: none;
-        stroke: var(--river);
-        stroke-width: 1.4;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
-      /* 01 — website: blinking text cursor */
-      .icon-web .cursor {
-        fill: var(--accent);
-        animation: blink 1.6s steps(1) infinite;
-      }
-      @keyframes blink {
-        0%,
-        45% {
-          opacity: 1;
-        }
-        50%,
-        100% {
-          opacity: 0;
-        }
-      }
-      /* 02 — automation: slow continuous rotation */
-      .icon-auto .loop {
-        transform-origin: 17px 17px;
-        animation: spin 5s linear infinite;
-      }
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-      /* 03 — video: recording dot pulse */
-      .icon-video .rec {
-        fill: var(--accent);
-        animation: pulse 2.2s ease-in-out infinite;
-      }
-      @keyframes pulse {
-        0%,
-        100% {
-          opacity: 1;
-          transform: scale(1);
-        }
-        50% {
-          opacity: 0.35;
-          transform: scale(0.75);
-        }
-      }
-      /* 04 — support: expanding ping ring */
-      .icon-support .ring {
-        fill: none;
-        stroke: var(--river);
-        stroke-width: 1.2;
-        transform-origin: 17px 17px;
-        animation: ping 2.6s ease-out infinite;
-      }
-      @keyframes ping {
-        0% {
-          transform: scale(0.6);
-          opacity: 0.9;
-        }
-        100% {
-          transform: scale(1.5);
-          opacity: 0;
-        }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .icon-web .cursor,
-        .icon-auto .loop,
-        .icon-video .rec,
-        .icon-support .ring {
-          animation: none;
-        }
-      }
-      .service-card h3 {
+      .review-main h3 {
         font-family: var(--display);
         font-weight: 600;
-        font-size: 19px;
-        margin: 18px 0 10px;
+        font-size: clamp(28px, 4vw, 42px);
+        line-height: 1.1;
+        max-width: 620px;
+        margin-bottom: 22px;
       }
-      .service-card p {
-        font-size: 15px;
+      .review-main > p {
         color: var(--text-muted);
+        font-size: 17px;
+        max-width: 610px;
+        margin-bottom: 30px;
+      }
+      .review-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 24px;
+        margin-bottom: 30px;
+      }
+      .review-meta span {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        color: var(--text);
+        font-family: var(--mono);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .review-meta span::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--river);
+      }
+      .review-deliverables {
+        padding: clamp(34px, 4vw, 48px);
+        background: var(--bg);
+      }
+      .review-deliverables h4 {
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--river);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 10px;
+      }
+      .review-item {
+        display: grid;
+        grid-template-columns: 30px 1fr;
+        gap: 14px;
+        padding: 22px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .review-item:last-of-type {
+        border-bottom: 0;
+      }
+      .review-item .num {
+        color: var(--river);
+        font-family: var(--mono);
+        font-size: 11px;
+        padding-top: 3px;
+      }
+      .review-item h5 {
+        font-family: var(--display);
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+      .review-item p {
+        color: var(--text-muted);
+        font-size: 14px;
+      }
+      .capability-note {
+        display: flex;
+        align-items: baseline;
+        gap: 18px;
+        margin-top: 24px;
+        color: var(--text-muted);
+        font-size: 14px;
+      }
+      .capability-note strong {
+        flex: 0 0 auto;
+        color: var(--text);
+        font-family: var(--mono);
+        font-size: 10px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .capability-note span {
+        line-height: 1.7;
       }
 
       /* TRUST */
@@ -819,8 +813,17 @@
         footer.contact .wrap {
           grid-template-columns: 1fr;
         }
-        .service-grid {
+        .review-card {
           grid-template-columns: 1fr;
+        }
+        .review-main {
+          border-right: 0;
+          border-bottom: 1px solid var(--border);
+        }
+        .capability-note {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 8px;
         }
         nav.main {
           display: none;
@@ -1055,7 +1058,7 @@
           Ryfylke React <span>/ Suldal</span>
         </div>
         <nav class="main">
-          <a href="#tenester">Tenester</a>
+          <a href="#tenester">Gjennomgang</a>
           <a href="#slik">Slik fungerer det</a>
           <a href="#kundeportal">Kundeportal</a>
           <a href="#kontakt">Kontakt</a>
@@ -1113,7 +1116,7 @@
             >Bestill ein uforpliktande prat</a
           >
           <a href="#tenester" class="btn btn-ghost"
-            >Sjå tenestene</a
+            >Sjå gjennomgangen</a
           >
         </div>
       </div>
@@ -1153,173 +1156,79 @@
     <section class="services" id="tenester">
       <div class="wrap">
         <div class="section-head">
-          <h2>Tenester</h2>
-          <p>Vel det som løyser mest akkurat no</p>
+          <h2>Ein god plass å starte</h2>
+          <p>Frå frustrasjon til ein konkret plan</p>
         </div>
-        <div class="service-grid">
-          <div class="service-card">
-            <div class="card-top">
+        <div class="review-card">
+          <div class="review-main">
+            <div class="review-kicker">
+              Digital gjennomgang av bedrifta
+            </div>
+            <h3>
+              Kva stel tid i kvardagen — og kva bør de gjere med
+              det?
+            </h3>
+            <p>
+              Eg kjem til dykk og ser på oppgåvene, systema og
+              dei små flaskehalsane som skapar meirarbeid. De
+              treng ikkje vite kva slags løysing de treng på
+              førehand.
+            </p>
+            <div
+              class="review-meta"
+              aria-label="Praktisk informasjon"
+            >
+              <span>60–90 minutt</span>
+              <span>Hjå dykk</span>
+              <span>Ingen binding</span>
+            </div>
+            <a href="#kontakt" class="btn btn-primary"
+              >Bestill ein gjennomgang</a
+            >
+          </div>
+
+          <div class="review-deliverables">
+            <h4>Etterpå får de</h4>
+            <div class="review-item">
               <div class="num">01</div>
-              <svg
-                class="service-icon icon-web"
-                viewBox="0 0 34 34"
-                aria-hidden="true"
-              >
-                <rect
-                  class="stroke"
-                  x="3"
-                  y="6"
-                  width="28"
-                  height="22"
-                  rx="2"
-                />
-                <line
-                  class="stroke"
-                  x1="3"
-                  y1="12"
-                  x2="31"
-                  y2="12"
-                />
-                <circle
-                  class="stroke"
-                  cx="7"
-                  cy="9"
-                  r="0.9"
-                  fill="var(--river)"
-                  stroke="none"
-                />
-                <line
-                  class="stroke"
-                  x1="8"
-                  y1="19"
-                  x2="20"
-                  y2="19"
-                />
-                <rect
-                  class="cursor"
-                  x="21"
-                  y="16.5"
-                  width="2"
-                  height="5"
-                  rx="0.5"
-                />
-              </svg>
+              <div>
+                <h5>Ei prioritert liste</h5>
+                <p>
+                  Kva som er mest verdt å fikse først — og kva
+                  som kan vente.
+                </p>
+              </div>
             </div>
-            <div>
-              <h3>Nettside og nettbutikk</h3>
-              <p>
-                Ny eller oppgradert nettside, bookingløysing
-                eller enkel nettbutikk — tilpassa mobil og kopla
-                til dine tenester.
-              </p>
-            </div>
-          </div>
-          <div class="service-card">
-            <div class="card-top">
+            <div class="review-item">
               <div class="num">02</div>
-              <svg
-                class="service-icon icon-auto"
-                viewBox="0 0 34 34"
-                aria-hidden="true"
-              >
-                <g class="loop">
-                  <path
-                    class="stroke"
-                    d="M25 17a8 8 0 1 1-2.3-5.6"
-                  />
-                  <path class="stroke" d="M25 8v5h-5" />
-                </g>
-              </svg>
+              <div>
+                <h5>Konkrete forslag</h5>
+                <p>
+                  Enkle tiltak og moglege løysingar, forklart
+                  utan fagspråk.
+                </p>
+              </div>
             </div>
-            <div>
-              <h3>Automatisering og verktøy</h3>
-              <p>
-                Booking, fakturering, påminningar og oppfølging
-                av kundar — sett opp éin gong, køyrer sjølv etter
-                det.
-              </p>
-            </div>
-          </div>
-          <div class="service-card">
-            <div class="card-top">
+            <div class="review-item">
               <div class="num">03</div>
-              <svg
-                class="service-icon icon-video"
-                viewBox="0 0 34 34"
-                aria-hidden="true"
-              >
-                <rect
-                  class="stroke"
-                  x="3"
-                  y="10"
-                  width="20"
-                  height="15"
-                  rx="2"
-                />
-                <path class="stroke" d="M23 15l8-4v13l-8-4z" />
-                <circle
-                  class="stroke"
-                  cx="13"
-                  cy="17.5"
-                  r="4.5"
-                />
-                <circle class="rec" cx="27" cy="8" r="2.4" />
-              </svg>
-            </div>
-            <div>
-              <h3>Video og foto</h3>
-              <p>
-                Innhald eller automatiserte forslag til nettside
-                og sosiale medium — frå produktbilete til
-                presentasjonsfilm, redigert og klart til bruk.
-              </p>
+              <div>
+                <h5>Kostnad og forventa gevinst</h5>
+                <p>
+                  Eit realistisk overslag på investeringa og kva
+                  de kan spare.
+                </p>
+              </div>
             </div>
           </div>
-          <div class="service-card">
-            <div class="card-top">
-              <div class="num">04</div>
-              <svg
-                class="service-icon icon-support"
-                viewBox="0 0 34 34"
-                aria-hidden="true"
-              >
-                <circle class="ring" cx="17" cy="17" r="9" />
-                <path
-                  class="stroke"
-                  d="M9 18v-2a8 8 0 0 1 16 0v2"
-                />
-                <rect
-                  class="stroke"
-                  x="6.5"
-                  y="17"
-                  width="4"
-                  height="7"
-                  rx="1.5"
-                />
-                <rect
-                  class="stroke"
-                  x="23.5"
-                  y="17"
-                  width="4"
-                  height="7"
-                  rx="1.5"
-                />
-                <path
-                  class="stroke"
-                  d="M27.5 24v1a3 3 0 0 1-3 3h-3"
-                />
-              </svg>
-            </div>
-            <div>
-              <h3>Fast IT-støtte</h3>
-              <p>
-                Nokon å ringje når noko gjer seg vrangt —
-                fastavtale med prioritert respons, ikkje
-                timeprisa panikk. Me hjelper deg med alt
-                digitalt.
-              </p>
-            </div>
-          </div>
+        </div>
+
+        <div class="capability-note">
+          <strong>Når planen er klar</strong>
+          <span
+            >Eg kan òg hjelpe med å gjennomføre han — frå
+            nettside og booking til automatisering, innhald og
+            løpande støtte.</span
+          >
         </div>
       </div>
     </section>
@@ -1558,7 +1467,7 @@
                 aria-controls="portal-screen"
                 data-slide="2"
               >
-                Kunnskapsagent
+                Kunnskapsagentar
               </button>
             </div>
 
@@ -1602,7 +1511,7 @@
                 src="./media/portal-chat.jpg"
                 alt="Samtale med ein kunnskapsagent i kundeportalen"
                 data-title="Kunnskapen dykkar, klar til bruk"
-                data-description="Still spørsmål og få hjelp frå ein agent som tek utgangspunkt i verksemda sine eigne kjelder."
+                data-description="Still spørsmål og få hjelp frå ein agent som tek utgangspunkt i verksemda sine eigne kjelder og verktøy."
               />
             </div>
           </div>
@@ -1752,33 +1661,6 @@
       showcase.addEventListener("focusout", startRotation);
       startRotation();
     })();
-    (function tiltCards() {
-      document
-        .querySelectorAll(".service-card")
-        .forEach((card) => {
-          const maxTilt = 1;
-
-          card.addEventListener("mousemove", (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const rotateY =
-              ((x - rect.width / 2) / (rect.width / 2)) *
-              maxTilt;
-            const rotateX =
-              -((y - rect.height / 2) / (rect.height / 2)) *
-              maxTilt;
-
-            card.style.transform = `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-          });
-
-          card.addEventListener("mouseleave", () => {
-            card.style.transform =
-              "perspective(700px) rotateX(0deg) rotateY(0deg)";
-          });
-        });
-    })();
-
     (function dotAnim() {
       const topo = document.querySelector(".topo-visual");
       const marker = document.querySelector(".location-marker");
